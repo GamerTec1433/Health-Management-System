@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="780.0" prefWidth="1280.0" style="-fx-background-color: #F6F6F6;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.coach.CoachScreenController">
+   <children>
+      <AnchorPane layoutX="444.0" layoutY="14.0" prefHeight="760.0" prefWidth="852.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="24.0" prefHeight="17.0" prefWidth="701.0" text="Plan Timeline" textAlignment="CENTER" textFill="#00b3ff" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <font>
+                  <Font name="System Bold" size="45.0" />
+               </font>
+            </Label>
+            <TableView fx:id="coachTable" layoutX="20.0" layoutY="118.0" prefHeight="253.0" prefWidth="812.0" AnchorPane.bottomAnchor="389.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+              <columns>
+                  <TableColumn fx:id="idCol" editable="false" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="exerciseCol" editable="false" prefWidth="75.0" text="Exercise" />
+                <TableColumn fx:id="dateCol" editable="false" prefWidth="75.0" text="Date" />
+                  <TableColumn fx:id="timeCol" editable="false" prefWidth="75.0" text="Time" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <Label alignment="CENTER" layoutX="81.0" layoutY="400.0" prefHeight="17.0" prefWidth="701.0" text="Coach Members" textAlignment="CENTER" textFill="#00b3ff">
+               <font>
+                  <Font name="System Bold" size="45.0" />
+               </font>
+            </Label>
+            <TableView fx:id="memberTable" layoutX="26.0" layoutY="484.0" prefHeight="253.0" prefWidth="812.0">
+               <columns>
+                  <TableColumn fx:id="idColMem" editable="false" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="nameColMem" editable="false" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="exerciseIdColMem" editable="false" prefWidth="75.0" text="Exercise ID" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="11.0" layoutY="10.0" prefHeight="780.0" prefWidth="408.0" style="-fx-background-color: linear-gradient(to right top, #003459, #074e7b, #0d6b9f, #0c89c3, #00a8e8);;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXButton layoutX="10.0" layoutY="14.0" prefHeight="44.0" prefWidth="388.0" style="-fx-background-color: #003459;" text="Edit Coach Profile" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="10.0" layoutY="73.0" onAction="#openSendMessageAllWindow" prefHeight="44.0" prefWidth="388.0" style="-fx-background-color: #003459;" text="Send a Message To All Memebers" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="10.0" layoutY="135.0" onAction="#openSendMessageWindow" prefHeight="44.0" prefWidth="370.0" style="-fx-background-color: #003459;" text="Send a Message To Member" textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="10.0" layoutY="195.0" onAction="#openNewTimelineWindow" prefHeight="44.0" prefWidth="368.0" style="-fx-background-color: #003459;" text="Add New Timeline" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="125.0" layoutY="251.0" onAction="#refreshTimelineTable" prefHeight="44.0" prefWidth="158.0" style="-fx-background-color: #00A8E8;" text="Refresh Timeline" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="14.0" layoutY="728.0" onAction="#logout" style="-fx-background-color: #E73636;" text="Logout" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.admin.AdminScreenController">
+   <children>
+      <Label alignment="CENTER" layoutX="20.0" layoutY="16.0" prefHeight="50.0" prefWidth="550.0" text="Select One Operation" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font></Label>
+      <HBox alignment="CENTER" layoutX="20.0" layoutY="66.0" prefHeight="314.0" prefWidth="550.0" style="-fx-background-color: rgb(166, 166, 166);" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="66.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="314.0" prefWidth="269.0">
+               <children>
+                  <Button fx:id="addBtn" minHeight="35.0" minWidth="200.0" mnemonicParsing="false" onAction="#checkButtonsClick" text="Add">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="deleteBtn" minHeight="35.0" minWidth="200.0" mnemonicParsing="false" onAction="#checkButtonsClick" text="Delete">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="updateBtn" minHeight="35.0" minWidth="200.0" mnemonicParsing="false" onAction="#checkButtonsClick" text="Update">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="listBtn" minHeight="35.0" minWidth="200.0" mnemonicParsing="false" onAction="#checkButtonsClick" text="List">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></Button>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="314.0" prefWidth="269.0">
+               <children>
+                  <Button fx:id="manageBilBtn" minHeight="35.0" minWidth="200.0" mnemonicParsing="false" onAction="#checkButtonsClick" text="Manage Billing">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="reportBtn" minHeight="35.0" minWidth="200.0" mnemonicParsing="false" onAction="#checkButtonsClick" text="Make Report For Member">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="changeMemCouchBtn" minHeight="35.0" minWidth="200.0" mnemonicParsing="false" onAction="#checkButtonsClick" text="Assign Member Be Couch">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="searchBtn" minHeight="35.0" minWidth="200.0" mnemonicParsing="false" onAction="#checkButtonsClick" text="Search">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
