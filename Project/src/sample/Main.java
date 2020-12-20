@@ -19,9 +19,6 @@ public class Main extends Application {
         window.setScene(new Scene(root));
         window.setResizable(false);
         window.show();
-
-        Date date = new Date();
-        date.setTime(100000);
     }
 
     public static void main(String[] args) {
