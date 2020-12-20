@@ -11,3 +11,6 @@ https://gluonhq.com/products/scene-builder/
 
 Javafx Link:
 https://openjfx.io/
+
+MYSQL Server Link:
+https://dev.mysql.com/downloads/installer/
