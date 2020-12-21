@@ -29,6 +29,7 @@ public class SendMessageToMemberController implements Initializable {
             }
         });
     }
+
     @FXML
     public void sendMessage(Event event)
     {
