@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `mydatabase` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `mydatabase`;
+CREATE DATABASE  IF NOT EXISTS `users` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `users`;
 -- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
--- Host: localhost    Database: mydatabase
+-- Host: localhost    Database: users
 -- ------------------------------------------------------
 -- Server version	8.0.21
 
@@ -18,116 +18,168 @@ USE `mydatabase`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `coaches`
+-- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `coaches`;
+DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `coaches` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `username` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `coaches`
---
-
-LOCK TABLES `coaches` WRITE;
-/*!40000 ALTER TABLE `coaches` DISABLE KEYS */;
-INSERT INTO `coaches` VALUES (1,'Ahmed Ali','ahmed143','12345'),(2,'Mohamed Zaki','zaki123','12345'),(3,'Bloody Wolf','blood','12345');
-/*!40000 ALTER TABLE `coaches` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `exercises`
---
-
-DROP TABLE IF EXISTS `exercises`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `exercises` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `coachID` int DEFAULT NULL,
-  `exercise` varchar(45) DEFAULT NULL,
-  `date` date DEFAULT NULL,
-  `time` time DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `c2` (`coachID`),
-  CONSTRAINT `c2` FOREIGN KEY (`coachID`) REFERENCES `coaches` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `exercises`
---
-
-LOCK TABLES `exercises` WRITE;
-/*!40000 ALTER TABLE `exercises` DISABLE KEYS */;
-INSERT INTO `exercises` VALUES (1,1,'Arm','2009-11-11','13:30:00'),(2,2,'Leg','2009-11-11','13:30:00'),(3,1,'Chest','2009-11-11','13:30:00'),(4,2,'Head','2000-12-12','12:00:00'),(5,3,'GGG','2020-12-02','12:00:00');
-/*!40000 ALTER TABLE `exercises` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `members`
---
-
-DROP TABLE IF EXISTS `members`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `members` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `age` int NOT NULL,
-  `weight` int NOT NULL,
-  `coachId` int DEFAULT NULL,
-  `exercise` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `c1` (`coachId`),
-  KEY `c3` (`exercise`),
-  CONSTRAINT `c1` FOREIGN KEY (`coachId`) REFERENCES `coaches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `c3` FOREIGN KEY (`exercise`) REFERENCES `exercises` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `members`
---
-
-LOCK TABLES `members` WRITE;
-/*!40000 ALTER TABLE `members` DISABLE KEYS */;
-INSERT INTO `members` VALUES (7,'Ahmed',100,220,1,2),(8,'Mohamed',100,220,1,1),(9,'Ali',100,220,2,3),(10,'Ahmed',100,220,2,1);
-/*!40000 ALTER TABLE `members` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `messages`
---
-
-DROP TABLE IF EXISTS `messages`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `messages` (
-  `memberId` int unsigned NOT NULL,
-  `message` varchar(200) NOT NULL,
-  KEY `c4` (`memberId`),
-  CONSTRAINT `c4` FOREIGN KEY (`memberId`) REFERENCES `members` (`id`)
+CREATE TABLE `admin` (
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(45) NOT NULL,
+  `Password` varchar(45) NOT NULL,
+  PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `messages`
+-- Dumping data for table `admin`
 --
 
-LOCK TABLES `messages` WRITE;
-/*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-INSERT INTO `messages` VALUES (9,'Hello World'),(10,'My Name Is Ahmed'),(7,'BOYYY!!'),(7,'Hello World Bye'),(8,'Hello World Bye'),(7,'aaaaaa'),(8,'aaaaaa'),(7,'Boy Boy Boy!'),(10,'Boy Boy Boy!'),(7,'asasdfasdfasd'),(7,'HHHHHH'),(8,'HHHHHH'),(7,'Hey Boy!!'),(7,'asdfasdvca'),(8,'asdfasdvca'),(7,'Hello Boy!!!!!!!!!!!');
-/*!40000 ALTER TABLE `messages` ENABLE KEYS */;
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `billingdata`
+--
+
+DROP TABLE IF EXISTS `billingdata`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `billingdata` (
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `UserId` int DEFAULT NULL,
+  `Money` int DEFAULT NULL,
+  `Sdate` date DEFAULT NULL,
+  `Edate` date DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `billingdata`
+--
+
+LOCK TABLES `billingdata` WRITE;
+/*!40000 ALTER TABLE `billingdata` DISABLE KEYS */;
+INSERT INTO `billingdata` VALUES (1,9,1000,'2020-12-24','2021-01-24'),(2,10,1000,'2020-12-24','2021-01-24'),(3,14,1000,'2020-12-26','2021-01-26');
+/*!40000 ALTER TABLE `billingdata` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `coachdata`
+--
+
+DROP TABLE IF EXISTS `coachdata`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `coachdata` (
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(100) NOT NULL,
+  `Password` varchar(50) NOT NULL,
+  `Age` int DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `Password_UNIQUE` (`Password`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `coachdata`
+--
+
+LOCK TABLES `coachdata` WRITE;
+/*!40000 ALTER TABLE `coachdata` DISABLE KEYS */;
+INSERT INTO `coachdata` VALUES (1,'Hello','HHHHH',1),(2,'c','c',1);
+/*!40000 ALTER TABLE `coachdata` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `exercisedata`
+--
+
+DROP TABLE IF EXISTS `exercisedata`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `exercisedata` (
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `exercise` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `exercisedata`
+--
+
+LOCK TABLES `exercisedata` WRITE;
+/*!40000 ALTER TABLE `exercisedata` DISABLE KEYS */;
+INSERT INTO `exercisedata` VALUES (1,'Chest'),(2,'Arm'),(3,'Leg');
+/*!40000 ALTER TABLE `exercisedata` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `messagedata`
+--
+
+DROP TABLE IF EXISTS `messagedata`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `messagedata` (
+  `UserId` int NOT NULL,
+  `Message` varchar(200) DEFAULT NULL,
+  `Date` date DEFAULT NULL,
+  `ExerciseId` int DEFAULT NULL,
+  `IsReaded` tinyint(1) DEFAULT NULL,
+  KEY `fk_userIdMess` (`UserId`),
+  KEY `fk_exercise` (`ExerciseId`),
+  CONSTRAINT `fk_exercise` FOREIGN KEY (`ExerciseId`) REFERENCES `coachdata` (`Id`) ON DELETE SET NULL,
+  CONSTRAINT `fk_userIdMess` FOREIGN KEY (`UserId`) REFERENCES `usersdata` (`Id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `messagedata`
+--
+
+LOCK TABLES `messagedata` WRITE;
+/*!40000 ALTER TABLE `messagedata` DISABLE KEYS */;
+INSERT INTO `messagedata` VALUES (13,'Hello Boys!!','2020-12-26',2,0),(14,'Hello Boys!!','2020-12-26',2,0),(14,'!!!','2020-12-27',2,0),(14,'Man!','2020-12-29',2,0),(14,'Max!','2020-12-20',2,0);
+/*!40000 ALTER TABLE `messagedata` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usersdata`
+--
+
+DROP TABLE IF EXISTS `usersdata`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usersdata` (
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Name` varchar(100) NOT NULL,
+  `Password` varchar(50) NOT NULL,
+  `Age` int DEFAULT NULL,
+  `Report` varchar(200) DEFAULT NULL,
+  `SubDate` date DEFAULT NULL,
+  `CoachId` int DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `Password_UNIQUE` (`Password`),
+  KEY `fk_cid` (`CoachId`),
+  KEY `fk_subdate` (`SubDate`),
+  CONSTRAINT `fk_cid` FOREIGN KEY (`CoachId`) REFERENCES `coachdata` (`Id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usersdata`
+--
+
+LOCK TABLES `usersdata` WRITE;
+/*!40000 ALTER TABLE `usersdata` DISABLE KEYS */;
+INSERT INTO `usersdata` VALUES (9,'tqwed','424',111,NULL,'2021-01-24',1),(13,'Ahmed','rx13123',19,'Bad','2021-01-24',2),(14,'Zaki','rx12323',19,'Shit','2021-01-26',2),(15,'Mohamed','rx123123',19,NULL,'2021-01-26',2);
+/*!40000 ALTER TABLE `usersdata` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -139,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-21 20:43:56
+-- Dump completed on 2020-12-28 11:59:27
