@@ -9,30 +9,16 @@ import java.util.Date;
 public class TimelineItems {
     private int id;
     private String exercise;
-    private String date;
-    private String time;
 
     public TimelineItems()
     {
         this.id = 0;
         this.exercise = "";
-        this.date = LocalDate.now().toString();
-        this.time = "00:00";
     }
 
-    public TimelineItems(int id, String exercise, String date, String time) {
+    public TimelineItems(int id, String exercise) {
         this.id = id;
         this.exercise = exercise;
-        this.date = date;
-        this.time = time;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public int getId() {
@@ -49,13 +35,5 @@ public class TimelineItems {
 
     public void setExercise(String exercise) {
         this.exercise = exercise;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 }

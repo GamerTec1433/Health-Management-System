@@ -1,12 +1,8 @@
 package sample;
 
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -26,17 +22,25 @@ public class LoginController implements Initializable {
         System.out.println("Start Program!!");
     }
 
-    public void login()
-    {
+    public void login() {
         System.out.println(usernameTextField.getText() + " " + passwordTextField.getText());
 
         if (rbSelectGroup.getSelectedToggle() == rbMember)
         {
-            System.out.println("Iam A Member");
+            if (checkUser(ConnectionUser.MEMBERS, usernameTextField.getText(), passwordTextField.getText()))
+            {
+                System.out.println("Iam A Member");
+                SceneManager sceneManager = new SceneManager();
+                sceneManager.changeScene("member/MemberScreen.fxml", "Health Club Management System");
+            }
+            else
+            {
+                System.out.println("Wrong User");
+            }
         }
         else if (rbSelectGroup.getSelectedToggle() == rbCoach)
         {
-            if (checkUser(ConnectionUser.coachesTable, usernameTextField.getText(), passwordTextField.getText()))
+            if (checkUser(ConnectionUser.COACHES, usernameTextField.getText(), passwordTextField.getText()))
             {
                 System.out.println("Iam A Coach");
                 SceneManager sceneManager = new SceneManager();
@@ -56,20 +60,19 @@ public class LoginController implements Initializable {
 
     }
 
-    public boolean checkUser(String table, String username, String password)
-    {
+    public boolean checkUser(String table, String username, String password) {
         ConnectionUser connectionUser = new ConnectionUser();
         Connection con = connectionUser.getConnection();
         try {
-            String sql = "SELECT * FROM " + table + " WHERE username = ? AND password = ?;";
+            String sql = "SELECT * FROM " + table + " WHERE Name = ? AND Password = ?;";
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);
             statement.execute();
             ResultSet resultSet = statement.getResultSet();
             resultSet.next();
-            String usernameTemp = resultSet.getString("username");
-            String passwordTemp = resultSet.getString("password");
+            String usernameTemp = resultSet.getString("Name");
+            String passwordTemp = resultSet.getString("Password");
             if (usernameTemp.equals(username) &&
                     passwordTemp.equals(password))
             {

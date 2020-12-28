@@ -1,23 +1,21 @@
 package sample.coach;
 
-import java.time.LocalDate;
-
 public class MemberItems {
     private int id;
     private String name;
-    private int exerciseId;
+    private String report;
 
     public MemberItems()
     {
         this.id = 0;
         this.name = "";
-        this.exerciseId = 0;
+        this.report = "";
     }
 
-    public MemberItems(int id, String name, int exerciseId) {
+    public MemberItems(int id, String name, String report) {
         this.id = id;
         this.name = name;
-        this.exerciseId = exerciseId;
+        this.report = report;
     }
 
     public int getId() {
@@ -36,11 +34,11 @@ public class MemberItems {
         this.name = name;
     }
 
-    public int getExerciseId() {
-        return exerciseId;
+    public String getReport() {
+        return report;
     }
 
-    public void setExerciseId(int exerciseId) {
-        this.exerciseId = exerciseId;
+    public void setReport(String report) {
+        this.report = report;
     }
 }

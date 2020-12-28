@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #202020;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.member.MemberScreenController">
+   <children>
+      <AnchorPane layoutX="11.0" prefHeight="780.0" prefWidth="266.0" style="-fx-background-color: #161a1d;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="TOP_CENTER" layoutY="113.0" prefHeight="324.0" prefWidth="408.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <JFXButton fx:id="homeBtn" alignment="BASELINE_LEFT" prefHeight="60.0" prefWidth="412.0" ripplerFill="BLACK" style="-fx-background-color: #e5383b; -fx-background-radius: 0;" text="Home" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/home.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust />
+                           </effect>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="timelineBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="412.0" ripplerFill="BLACK" style="-fx-background-color: #660708; -fx-background-radius: 0;" text="Timeline" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/checklist.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="profileBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="70.0" prefHeight="60.0" prefWidth="412.0" ripplerFill="BLACK" style="-fx-background-radius: 0;" text="Profile" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/user.png" />
+                           </image>
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="messageBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="202.0" prefHeight="60.0" prefWidth="412.0" ripplerFill="BLACK" style="-fx-background-radius: 0;" text="Messages" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/messenger.png" />
+                           </image>
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </ImageView>
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+            <JFXButton layoutX="14.0" layoutY="722.0" onAction="#logout" style="-fx-background-color: #e5383b;" text="Logout" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="notificationMess" alignment="CENTER" layoutX="43.0" layoutY="343.0" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: red; -fx-background-radius: 15em;" text="999" textFill="WHITE" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="198.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="13.0" layoutY="28.0" prefHeight="45.0" prefWidth="240.0" text="Torpedo GYM" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" color="#030303" height="29.9" radius="12.225" spread="0.91">
+                     <input>
+                        <Glow level="0.59" />
+                     </input>
+                  </DropShadow>
+               </effect>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow height="41.64" radius="18.865000000000002" width="35.82" />
+         </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="homePage" layoutX="266.0" prefHeight="771.0" prefWidth="935.0" visible="false">
+         <children>
+            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="404.0" prefWidth="907.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #000000, #3f1620, #7d1e32, #be273b, #ff373b);;">
+                     <children>
+                        <ImageView fitHeight="404.0" fitWidth="907.0" opacity="0.26" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../Images/member%20background2.jpg" />
+                           </image>
+                           <effect>
+                              <Bloom threshold="0.21" />
+                           </effect>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutX="113.0" layoutY="162.0" text="Welcome In Torpedo GYM" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="55.0" />
+                           </font>
+                           <effect>
+                              <DropShadow blurType="TWO_PASS_BOX" spread="0.87" />
+                           </effect>
+                        </Label>
+                     </children>
+                     <effect>
+                        <Glow level="0.59" />
+                     </effect>
+                  </AnchorPane>
+               </children>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="50.0" radius="24.5" spread="0.29" width="50.0" />
+               </effect>
+            </AnchorPane>
+            <VBox layoutX="50.0" layoutY="467.0" prefHeight="258.0" prefWidth="835.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="467.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="286.0" prefWidth="852.0">
+                     <children>
+                        <AnchorPane layoutX="336.0" layoutY="10.0" prefHeight="205.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #000000, #3f1620, #7d1e32, #be273b, #ff373b);; -fx-background-radius: 15em;">
+                                 <children>
+                                    <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/messenger.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label alignment="CENTER" layoutX="44.0" layoutY="135.0" text="Messages" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="25.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <Label fx:id="homeMessText" alignment="CENTER" layoutY="200.0" prefHeight="17.0" prefWidth="200.0" text="9999" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="40.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="205.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #000000, #3f1620, #7d1e32, #be273b, #ff373b);; -fx-background-radius: 15em;">
+                                 <children>
+                                    <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/barbell.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label alignment="CENTER" layoutX="47.0" layoutY="135.0" text="Exercises" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="25.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <Label fx:id="homeExerText" alignment="CENTER" layoutY="200.0" prefHeight="17.0" prefWidth="200.0" text="9999" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="40.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                        </AnchorPane>
+                        <AnchorPane layoutX="236.0" layoutY="10.0" prefHeight="205.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #000000, #3f1620, #7d1e32, #be273b, #ff373b);; -fx-background-radius: 15em;">
+                                 <children>
+                                    <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/clock.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label alignment="CENTER" layoutX="46.0" layoutY="135.0" text="Days Left" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="25.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <Label fx:id="homeDaysText" alignment="CENTER" layoutY="200.0" prefHeight="17.0" prefWidth="200.0" text="9999" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="40.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                        </AnchorPane>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <effect>
+                        <DropShadow blurType="GAUSSIAN" height="80.3" radius="32.235" spread="0.24" width="50.64" />
+                     </effect>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="timelinePage" layoutX="349.0" layoutY="10.0" prefHeight="751.0" prefWidth="920.0" visible="false" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <AnchorPane layoutX="50.0" layoutY="32.0" prefHeight="707.0" prefWidth="835.0" style="-fx-background-color: #0b090a; -fx-background-radius: 1em;">
+               <effect>
+                  <DropShadow height="50.0" radius="24.5" spread="0.43" width="50.0" />
+               </effect>
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="308.0" layoutY="6.0" prefHeight="81.0" prefWidth="219.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="66.0" prefWidth="835.0" text="Timeline" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="45.0" />
+                           </font>
+                        </Label>
+                        <Line endX="115.58578491210938" endY="2.7620792388916016E-4" startX="-100.0" stroke="#970000" strokeLineJoin="ROUND" strokeWidth="2.0" />
+                     </children>
+                  </VBox>
+                  <TableView fx:id="coachTable" layoutX="20.0" layoutY="93.0" prefHeight="545.0" prefWidth="795.0" style="-fx-background-color: #23231B;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                    <columns>
+                        <TableColumn fx:id="idCol" editable="false" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="exerciseCol" editable="false" prefWidth="75.0" text="Exercise" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <JFXButton layoutX="715.0" layoutY="649.0" onAction="#refreshTimelineTable" prefHeight="44.0" prefWidth="100.0" style="-fx-background-color: #e5383b;" text="Refresh" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="715.0" AnchorPane.rightAnchor="20.0">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="profilePage" layoutX="274.0" layoutY="4.0" prefHeight="760.0" prefWidth="920.0">
+         <children>
+            <AnchorPane layoutX="45.0" layoutY="36.0" prefHeight="707.0" prefWidth="835.0" style="-fx-background-color: #0b090a; -fx-background-radius: 1em;">
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="308.0" layoutY="12.0" prefHeight="81.0" prefWidth="219.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="66.0" prefWidth="835.0" text="Profile" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="45.0" />
+                           </font>
+                        </Label>
+                        <Line endX="115.58578491210938" endY="2.7620792388916016E-4" startX="-100.0" stroke="#970000" strokeLineJoin="ROUND" strokeWidth="2.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" layoutX="96.0" layoutY="112.0" prefHeight="514.0" prefWidth="682.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                     <children>
+                        <GridPane alignment="TOP_CENTER" prefHeight="174.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label prefHeight="76.0" prefWidth="198.0" text="Username :" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="10.0" prefHeight="76.0" prefWidth="198.0" text="Age :" textFill="WHITE" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="62.0" prefHeight="76.0" prefWidth="198.0" text="Subscription End :" textFill="WHITE" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="10.0" prefHeight="76.0" prefWidth="198.0" text="Subscriped At :" textFill="WHITE" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nameProfileText" alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" text="NAME" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="ageProfileText" alignment="CENTER" contentDisplay="TOP" layoutX="455.0" layoutY="17.0" text="AGE" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sDateProfileText" alignment="CENTER" contentDisplay="TOP" layoutX="466.0" layoutY="61.0" text="2013/01/01" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="eDateProfileText" alignment="CENTER" contentDisplay="TOP" layoutX="429.0" layoutY="104.0" text="2077/01/01" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                        <Line endX="510.5857849121094" endY="1.5497207641601562E-6" startX="-100.0" stroke="#bc0000" strokeLineJoin="ROUND" strokeWidth="2.0">
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Line>
+                        <Label alignment="CENTER" text="EDIT PROFILE" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <Line endX="115.58578491210938" endY="2.7620792388916016E-4" layoutX="180.0" layoutY="187.0" startX="-100.0" stroke="#bc0000" strokeLineJoin="ROUND" strokeWidth="2.0" />
+                        <GridPane prefHeight="197.0" prefWidth="591.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.0" minWidth="10.0" prefWidth="390.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="405.0" minWidth="10.0" prefWidth="395.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label prefHeight="76.0" prefWidth="198.0" text="Name :" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="nameTextfield" focusColor="#e50000" prefHeight="44.0" prefWidth="545.0" promptText="Name..." style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#2c0000" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </JFXTextField>
+                              <Label layoutX="10.0" layoutY="10.0" prefHeight="76.0" prefWidth="198.0" text="Password :" textFill="WHITE" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="53.0" prefHeight="76.0" prefWidth="198.0" text="Age :" textFill="WHITE" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="passwordTextfield" focusColor="#e50000" layoutX="303.0" layoutY="10.0" prefHeight="44.0" prefWidth="545.0" promptText="Password..." style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#2c0000" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="ageTextfield" focusColor="#e50000" layoutX="303.0" layoutY="10.0" prefHeight="44.0" prefWidth="545.0" promptText="Age..." style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#2c0000" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+                  <JFXButton layoutX="669.0" layoutY="649.0" onAction="#applyEditProfile" prefHeight="44.0" prefWidth="152.0" style="-fx-background-color: #e5383b;" text="Apply Edit" textFill="WHITE" AnchorPane.leftAnchor="669.0" AnchorPane.rightAnchor="14.0">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <effect>
+                  <DropShadow height="50.0" radius="24.5" spread="0.43" width="50.0" />
+               </effect>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="messagesPage" layoutX="274.0" layoutY="8.0" prefHeight="760.0" prefWidth="920.0" visible="false">
+         <children>
+            <AnchorPane layoutX="43.0" layoutY="27.0" prefHeight="707.0" prefWidth="835.0" style="-fx-background-color: #0b090a; -fx-background-radius: 1em;">
+               <effect>
+                  <DropShadow height="50.0" radius="24.5" spread="0.43" width="50.0" />
+               </effect>
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="289.0" layoutY="14.0" prefHeight="81.0" prefWidth="219.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="66.0" prefWidth="835.0" text="Messages" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="45.0" />
+                           </font>
+                        </Label>
+                        <Line endX="153.58578491210938" endY="1.5497207641601562E-6" startX="-100.0" stroke="#970000" strokeLineJoin="ROUND" strokeWidth="2.0" />
+                     </children>
+                  </VBox>
+                  <TableView fx:id="messagesTable" layoutX="20.0" layoutY="100.0" prefHeight="545.0" prefWidth="795.0" style="-fx-background-color: #23231B;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
+                     <columns>
+                        <TableColumn fx:id="messageCol" editable="false" prefWidth="75.0" text="Message" />
+                        <TableColumn fx:id="DateCol" editable="false" prefWidth="75.0" text="Date" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <JFXButton layoutX="730.0" layoutY="655.0" onAction="#refreshTimelineTable" style="-fx-background-color: #e5383b;" text="Refresh" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

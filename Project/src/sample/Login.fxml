@@ -13,30 +13,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="780.0" prefWidth="1280.0" style="-fx-background-color: #00171F;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #00171F;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
    <children>
-      <AnchorPane prefHeight="780.0" prefWidth="669.0" style="-fx-background-color: linear-gradient(to right top, #051937, #0b4066, #016c96, #009cc4, #00ceed);;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="787.0" prefWidth="869.0" style="-fx-background-color: linear-gradient(to right top, #bfd7ff, #9abdff, #7aa2ff, #6185ff, #5465ff);;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="787.0" fitWidth="1234.0" layoutX="-247.0" layoutY="-1.0" opacity="0.23" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="787.0" fitWidth="1234.0" layoutX="-259.0" nodeOrientation="INHERIT" opacity="0.37" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/gym.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="39.0" layoutY="174.0" prefHeight="276.0" prefWidth="533.0" text="Welcome To Our Health Managment System" textFill="#78deff" textOverrun="CLIP" wrapText="true">
+            <Label layoutX="39.0" layoutY="174.0" prefHeight="276.0" prefWidth="425.0" text="Welcome To Our Health Managment System" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                <font>
                   <Font name="System Bold" size="55.0" />
                </font>
             </Label>
-            <Label layoutX="39.0" layoutY="382.0" prefHeight="137.0" prefWidth="551.0" text="Are you ready to get Fit, Strong &amp; Motivated!" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+            <Label layoutX="39.0" layoutY="417.0" prefHeight="137.0" prefWidth="425.0" text="Are you ready to get Fit, Strong &amp; Motivated!" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="784.0" prefHeight="780.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="784.0" prefHeight="786.0" prefWidth="502.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="19.0" layoutY="14.0" prefHeight="17.0" prefWidth="162.0" text="LOGIN" textAlignment="CENTER" textFill="#00a8e8" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
+            <Label alignment="CENTER" layoutX="19.0" layoutY="14.0" prefHeight="17.0" prefWidth="162.0" text="LOGIN" textAlignment="CENTER" textFill="#5465ff" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
                <font>
                   <Font name="System Bold" size="50.0" />
                </font>
@@ -44,7 +44,7 @@
                   <Blend />
                </effect>
             </Label>
-            <JFXTextField fx:id="usernameTextField" focusColor="#00a8e8" labelFloat="true" layoutX="110.0" layoutY="217.0" prefHeight="58.0" prefWidth="391.0" promptText="Username" style="-fx-background-color: #F4F4F4;" unFocusColor="#003459">
+            <JFXTextField fx:id="usernameTextField" focusColor="#00a8e8" layoutX="57.0" layoutY="238.0" prefHeight="58.0" prefWidth="391.0" promptText="Username" style="-fx-background-color: #EDEDED; -fx-text-fill: black;" unFocusColor="#003459">
                <font>
                   <Font size="20.0" />
                </font>
@@ -52,34 +52,36 @@
                   <Insets />
                </opaqueInsets>
             </JFXTextField>
-            <JFXPasswordField fx:id="passwordTextField" focusColor="#00a8e8" labelFloat="true" layoutX="110.0" layoutY="335.0" prefHeight="58.0" prefWidth="391.0" promptText="Password" style="-fx-background-color: #F4F4F4;" unFocusColor="#003459">
+            <JFXPasswordField fx:id="passwordTextField" focusColor="#00a8e8" layoutX="57.0" layoutY="306.0" prefHeight="58.0" prefWidth="391.0" promptText="Password" style="-fx-background-color: #EDEDED; -fx-text-fill: black;" unFocusColor="#003459">
                <font>
                   <Font size="20.0" />
                </font>
             </JFXPasswordField>
-            <JFXRadioButton fx:id="rbMember" layoutX="110.0" layoutY="463.0" selected="true" text="Member">
+            <JFXRadioButton fx:id="rbMember" layoutX="42.0" layoutY="412.0" selected="true" text="Member">
                <toggleGroup>
                   <ToggleGroup fx:id="rbSelectGroup" />
                </toggleGroup>
                <font>
-                  <Font size="15.0" />
+                  <Font size="20.0" />
                </font>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="rbCoach" layoutX="270.0" layoutY="463.0" text="Coach" toggleGroup="$rbSelectGroup">
+            <JFXRadioButton fx:id="rbCoach" layoutX="211.0" layoutY="412.0" text="Coach" toggleGroup="$rbSelectGroup">
                <font>
-                  <Font size="15.0" />
+                  <Font size="20.0" />
                </font>
             </JFXRadioButton>
-            <JFXRadioButton fx:id="rbAdmin" layoutX="428.0" layoutY="463.0" text="Admin" toggleGroup="$rbSelectGroup">
+            <JFXRadioButton fx:id="rbAdmin" layoutX="370.0" layoutY="412.0" text="Admin" toggleGroup="$rbSelectGroup">
                <font>
-                  <Font size="15.0" />
+                  <Font size="20.0" />
                </font>
             </JFXRadioButton>
-            <JFXButton fx:id="loginBtn" layoutX="189.0" layoutY="583.0" onAction="#login" prefHeight="58.0" prefWidth="232.0" style="-fx-background-color: #00A8E8;" text="Sign In" textFill="WHITE">
+            <JFXButton fx:id="loginBtn" layoutX="138.0" layoutY="495.0" onAction="#login" prefHeight="58.0" prefWidth="232.0" style="-fx-background-color: #5465ff;" text="Sign In" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </JFXButton>
+            <Label alignment="CENTER" layoutX="118.0" layoutY="714.0" prefHeight="22.0" prefWidth="273.0" text="Don't Hava An Account?" wrapText="true" />
+            <Label alignment="CENTER" layoutX="118.0" layoutY="736.0" prefHeight="22.0" prefWidth="273.0" text="Talk to one of our Admins" textFill="#5465ff" underline="true" wrapText="true" />
          </children>
       </AnchorPane>
    </children>

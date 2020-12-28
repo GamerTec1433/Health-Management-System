@@ -1,40 +1,27 @@
 package sample.coach;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import sample.ConnectionUser;
-import sample.SceneManager;
-import sample.User;
+import javafx.scene.layout.VBox;
+import sample.*;
 
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class CoachScreenController implements Initializable {
 
-    private enum ButtonsActive{
-        home,
-        timeline,
-        members,
-        addTimeLine,
-        message
-    }
-
-    ButtonsActive buttonsActive;
+    UIControllers.ButtonsCoachActive buttonsCoachActive;
 
     @FXML
     private JFXButton homeBtn;
@@ -44,6 +31,9 @@ public class CoachScreenController implements Initializable {
 
     @FXML
     private JFXButton memberBtn;
+
+    @FXML
+    private  JFXButton profileBtn;
 
     @FXML
     private JFXButton addTimelineBtn;
@@ -57,6 +47,23 @@ public class CoachScreenController implements Initializable {
     @FXML
     private JFXButton sendAllMemberBtn;
 
+    @FXML
+    private  JFXButton updateProfileBtn;
+
+    // Radio
+    @FXML
+    private JFXRadioButton sendMessOneRadio;
+
+    @FXML
+    private JFXRadioButton sendMessAllRadio;
+
+    // VBox
+    @FXML
+    private VBox sendOneVbox;
+
+    @FXML
+    private VBox sendAllVbox;
+
     // Anchors
     @FXML
     private AnchorPane homePage;
@@ -69,6 +76,9 @@ public class CoachScreenController implements Initializable {
 
     @FXML
     private AnchorPane membersPage;
+
+    @FXML
+    private AnchorPane profilePage;
 
     @FXML
     private AnchorPane messagesPage;
@@ -87,11 +97,13 @@ public class CoachScreenController implements Initializable {
     private JFXTextField exerciseNameText;
 
     @FXML
-    private JFXTextField timelineText;
+    private JFXTextField nameTextfield;
 
-    // Date
     @FXML
-    private DatePicker timelineDate;
+    private JFXTextField passwordTextfield;
+
+    @FXML
+    private JFXTextField ageTextfield;
 
     // Timeline Table
     public TableView<TimelineItems> coachTable;
@@ -100,12 +112,6 @@ public class CoachScreenController implements Initializable {
 
     @FXML
     private TableColumn<TimelineItems, String> exerciseCol;
-
-    @FXML
-    private TableColumn<TimelineItems, String> dateCol;
-
-    @FXML
-    private TableColumn<TimelineItems, String> timeCol;
 
     // Members Table
     @FXML
@@ -118,16 +124,16 @@ public class CoachScreenController implements Initializable {
     private TableColumn<MemberItems, String> nameColMem;
 
     @FXML
-    private TableColumn<MemberItems, Integer> exerciseIdColMem;
+    private TableColumn<MemberItems, String> exerciseIdColMem;
 
 
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
         initializeTables();
-        initializeButtons();
 
-        setTextFieldNumbers(memberIDText);
-        setTextFieldTime(timelineText);
+        UIControllers.setTextFieldNumbers(memberIDText);
+
+        initializeButtons();
     }
 
     ArrayList<AnchorPane> anchors;
@@ -135,128 +141,63 @@ public class CoachScreenController implements Initializable {
     private void initializeButtons()
     {
         anchors = new ArrayList<>();
-        anchors.add(homePage);
-        anchors.add(timelinePage);
-        anchors.add(membersPage);
-        anchors.add(messagesPage);
-        anchors.add(addTimelinePage);
+            anchors.add(homePage);
+            anchors.add(timelinePage);
+            anchors.add(membersPage);
+            anchors.add(profilePage);
+            anchors.add(messagesPage);
+            anchors.add(addTimelinePage);
 
         jfxButtons = new ArrayList<>();
-        jfxButtons.add(homeBtn);
-        jfxButtons.add(timelineBtn);
-        jfxButtons.add(memberBtn);
-        jfxButtons.add(addTimelineBtn);
-        jfxButtons.add(messageBtn);
+            jfxButtons.add(homeBtn);
+            jfxButtons.add(timelineBtn);
+            jfxButtons.add(memberBtn);
+            jfxButtons.add(profileBtn);
+            jfxButtons.add(messageBtn);
+            jfxButtons.add(addTimelineBtn);
 
 
-        homeBtn.setOnAction(e->{
-            activePage(homeBtn, homePage, ButtonsActive.home);
+        int i = 0;
+        for (JFXButton b : jfxButtons)
+        {
+            int finalI = i;
+            b.setOnAction(e->{
+                UIControllers.activePage(b, jfxButtons, anchors.get(finalI), anchors, ProjectColors.WHITE_COLOR, ProjectColors.WHITE_COLOR, 0, 0);
+                buttonsCoachActive = UIControllers.ButtonsCoachActive.values()[finalI];
+            });
+            b.setOnMouseEntered(e->{
+                if (buttonsCoachActive == UIControllers.ButtonsCoachActive.values()[finalI]) return;
+                System.out.println(UIControllers.ButtonsCoachActive.values()[finalI] + " " + buttonsCoachActive);
+                UIControllers.changeStyleBackground(b, ProjectColors.SECONDARY_COLOR, ProjectColors.BLACK_COLOR, -.8);
+            });
+            b.setOnMouseExited(e->{
+                if (buttonsCoachActive == UIControllers.ButtonsCoachActive.values()[finalI]) return;
+                UIControllers.changeStyleBackground(b, ProjectColors.TRANSPARENT, ProjectColors.WHITE_COLOR, 0);
+            });
+            i++;
+        }
+
+
+        sendMessOneRadio.setOnAction(e-> {
+            sendOneVbox.setVisible(true);
+            sendAllVbox.setVisible(false);
         });
-        timelineBtn.setOnAction(e->{
-            activePage(timelineBtn, timelinePage, ButtonsActive.timeline);
+
+        sendMessAllRadio.setOnAction(e->{
+            sendOneVbox.setVisible(false);
+            sendAllVbox.setVisible(true);
         });
-        memberBtn.setOnAction(e->{
-            activePage(memberBtn, membersPage, ButtonsActive.members);
-        });
-        addTimelineBtn.setOnAction(e->{
-            activePage(addTimelineBtn, addTimelinePage, ButtonsActive.addTimeLine);
-        });
-        messageBtn.setOnAction(e->{
-            activePage(messageBtn, messagesPage, ButtonsActive.message);
-        });
+
         sendMemberBtn.setOnAction(e->{
-            sendMessage(memberTextArea, memberIDText);
-        });
-        sendAllMemberBtn.setOnAction(e->{
             sendMessage(allMemberTextArea);
         });
 
-        homeBtn.setOnMouseEntered(e->{
-            if (buttonsActive == ButtonsActive.home) return;
-            changeStyleBackground(homeBtn, "#660708");
+        sendAllMemberBtn.setOnAction(e->{
+            sendMessage(memberTextArea, memberIDText);
         });
-        timelineBtn.setOnMouseEntered(e->{
-            if (buttonsActive == ButtonsActive.timeline) return;
-            changeStyleBackground(timelineBtn, "#660708");
-        });
-        addTimelineBtn.setOnMouseEntered(e->{
-            if (buttonsActive == ButtonsActive.addTimeLine) return;
-            changeStyleBackground(addTimelineBtn, "#660708");
-        });
-        memberBtn.setOnMouseEntered(e->{
-            if (buttonsActive == ButtonsActive.members) return;
-            changeStyleBackground(memberBtn, "#660708");
-        });
-        messageBtn.setOnMouseEntered(e->{
-            if (buttonsActive == ButtonsActive.message) return;
-            changeStyleBackground(messageBtn, "#660708");
-        });
-
-        homeBtn.setOnMouseExited(e->{
-            if (buttonsActive == ButtonsActive.home) return;
-            changeStyleBackground(homeBtn, "");
-        });
-        timelineBtn.setOnMouseExited(e->{
-            if (buttonsActive == ButtonsActive.timeline) return;
-            changeStyleBackground(timelineBtn, "");
-        });
-        addTimelineBtn.setOnMouseEntered(e->{
-            if (buttonsActive == ButtonsActive.addTimeLine) return;
-            changeStyleBackground(addTimelineBtn, "");
-        });
-        memberBtn.setOnMouseExited(e->{
-            if (buttonsActive == ButtonsActive.members) return;
-            changeStyleBackground(memberBtn, "");
-        });
-        messageBtn.setOnMouseExited(e->{
-            if (buttonsActive == ButtonsActive.message) return;
-            changeStyleBackground(messageBtn, "");
-        });
-
 
         //Show Home Page
         homeBtn.fire();
-    }
-
-    private void changeStyleBackground(JFXButton button, String color)
-    {
-        button.setStyle("-fx-background-color: " + color);
-    }
-
-    private void activePage(JFXButton button, AnchorPane page, ButtonsActive buttonsActive)
-    {
-        this.buttonsActive = buttonsActive;
-        for (AnchorPane a : anchors)
-        {
-            if (a != page)
-                a.setVisible(false);
-            else
-                a.setVisible(true);
-        }
-
-        changeStyleBackground(button, " #e5383b");
-        for (JFXButton b : jfxButtons)
-            if (b != button)
-                changeStyleBackground(b, "");
-
-    }
-
-    private void setTextFieldTime(JFXTextField textField)
-    {
-        textField.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            if (!newValue.matches("\\d{0,2}([\\:]\\d{0,2})?")) {
-                textField.setText(oldValue);
-            }
-        });
-    }
-
-    private void setTextFieldNumbers(JFXTextField textField)
-    {
-        textField.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            if (!newValue.matches("\\d{0,7}(\\d{0,4})?")) {
-                textField.setText(oldValue);
-            }
-        });
     }
 
     @FXML
@@ -269,19 +210,13 @@ public class CoachScreenController implements Initializable {
 
         boolean isMessageSent = false;
         try {
-            String sql = "Select * From members Where coachId = " + User.id;
+            String sql = "Select * From " + ConnectionUser.MEMBERS + " Where coachId = " + User.id;
             Statement statement = con.createStatement();
             statement.execute(sql);
             ResultSet resultSet = statement.getResultSet();
             while (resultSet.next())
             {
-                String sqlInsert = "Insert Into messages Values (?, ?)";
-                PreparedStatement preparedStatement = con.prepareStatement(sqlInsert);
-                preparedStatement.setInt(1, resultSet.getInt("id"));
-                preparedStatement.setString(2, str);
-                preparedStatement.execute();
-                preparedStatement.close();
-                isMessageSent = true;
+                isMessageSent = sendMessageSQL(str, con, isMessageSent, resultSet);
             }
             statement.cancel();
         } catch (SQLException throwables) {
@@ -309,7 +244,7 @@ public class CoachScreenController implements Initializable {
 
         boolean isMessageSent = false;
         try {
-            String sql = "Select * From members Where coachId = " + User.id;
+            String sql = "Select * From " + ConnectionUser.MEMBERS + " Where coachId = " + User.id;
             Statement statement = con.createStatement();
             statement.execute(sql);
             ResultSet resultSet = statement.getResultSet();
@@ -317,13 +252,7 @@ public class CoachScreenController implements Initializable {
             {
                 if (resultSet.getInt("id") == id)
                 {
-                    String sqlInsert = "Insert Into messages Values (?, ?)";
-                    PreparedStatement preparedStatement = con.prepareStatement(sqlInsert);
-                    preparedStatement.setInt(1, resultSet.getInt("id"));
-                    preparedStatement.setString(2, str);
-                    preparedStatement.execute();
-                    preparedStatement.close();
-                    isMessageSent = true;
+                    isMessageSent = sendMessageSQL(str, con, isMessageSent, resultSet);
                     break;
                 }
             }
@@ -342,72 +271,66 @@ public class CoachScreenController implements Initializable {
         }
     }
 
-    private void initializeTables()
-    {
-        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        exerciseCol.setCellValueFactory(new PropertyValueFactory<>("exercise"));
-        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
-        timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
-
-        idColMem.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameColMem.setCellValueFactory(new PropertyValueFactory<>("name"));
-        exerciseIdColMem.setCellValueFactory(new PropertyValueFactory<>("exerciseId"));
-
-        refreshTimelineTable(null);
+    private boolean sendMessageSQL(String str, Connection con, boolean isMessageSent, ResultSet resultSet) throws SQLException {
+        String sqlInsert = "Insert Into " + ConnectionUser.MESSAGES + " Values (?, ?, ?, ?, ?)";
+        PreparedStatement preparedStatement = con.prepareStatement(sqlInsert);
+        preparedStatement.setInt(1, resultSet.getInt("id"));
+        preparedStatement.setString(2, str);
+        preparedStatement.setDate(3, Date.valueOf(LocalDate.now().toString()));
+        preparedStatement.setInt(4, User.id);
+        preparedStatement.setBoolean(5, false);
+        preparedStatement.execute();
+        preparedStatement.close();
+        isMessageSent = true;
+        return true;
     }
+
+
 
     public void addNewTimeline(Event event)
     {
-        LocalDate date = timelineDate.getValue();
+        boolean isAdded = false;
         String exerciseName = exerciseNameText.getText();
-        String time = timelineText.getText() + ":00";
 
         ConnectionUser connectionUser = new ConnectionUser();
         Connection con = connectionUser.getConnection();
 
         try {
-            String sql = "insert into exercises (coachID, exercise, date, time) values (?, ?, ?, ?);";
+            String sql = "insert into " + ConnectionUser.EXERCISE + " (exercise) values (?);";
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-            preparedStatement.setInt(1, User.id);
-            preparedStatement.setString(2, exerciseName);
-            preparedStatement.setDate(3, java.sql.Date.valueOf(date));
-            preparedStatement.setTime(4, Time.valueOf(time));
+            preparedStatement.setString(1, exerciseName);
             preparedStatement.execute();
             preparedStatement.close();
 
-            System.out.println("Succ");
+            isAdded = true;
         } catch (SQLException throwables) {
-            System.out.println("Fail");
+            isAdded = false;
             throwables.printStackTrace();
         }
+
+        if (isAdded)
+        {
+            AlertBox.display("Timeline Added", "Timeline added");
+        }
+        else {
+            AlertBox.display("Timeline Error", "Error In Adding Timeline\nPlease Try Again");
+        }
+
+        refreshTimelineTable(null);
     }
 
-    /*
-    public void openSendMessageAllWindow(Event event)
-    {
-        SceneManager sceneManager = new SceneManager();
-        sceneManager.openWindow("coach/sendMessageToAllMembers/SendMessagesAllMembers.fxml", "Send Message");
-    }
-    public void openSendMessageWindow(Event event)
-    {
-        SceneManager sceneManager = new SceneManager();
-        sceneManager.openWindow("coach/sendMessageToMember/SendMessageToMember.fxml", "Send Message");
-    }
-    public void openNewTimelineWindow(Event event)
-    {
-        SceneManager sceneManager = new SceneManager();
-        sceneManager.openWindow("coach/AddTimeline/AddTimeline.fxml", "Add New Timeline");
-    }
-    */
 
-    @FXML
-    public void logout(Event event)
+
+    private void initializeTables()
     {
-        SceneManager sceneManager = new SceneManager();
-        sceneManager.changeScene("Login.fxml", "Health Club Management System");
-        User.id = 0;
-        User.username = "";
-        User.password = "";
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        exerciseCol.setCellValueFactory(new PropertyValueFactory<>("exercise"));
+
+        idColMem.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameColMem.setCellValueFactory(new PropertyValueFactory<>("name"));
+        exerciseIdColMem.setCellValueFactory(new PropertyValueFactory<>("report"));
+
+        refreshTimelineTable(null);
     }
 
     @FXML
@@ -417,22 +340,18 @@ public class CoachScreenController implements Initializable {
         Connection con = connectionUser.getConnection();
         try {
             Statement statement = con.createStatement();
-            String query = "Select * From exercises Where coachId = " + User.id;
+            String query = "Select * From " + ConnectionUser.EXERCISE;
             ResultSet resultSet = statement.executeQuery(query);
 
             ObservableList<TimelineItems> data = FXCollections.observableArrayList();
 
             while (resultSet.next())
             {
-                int id = resultSet.getInt("id");
+                int id = resultSet.getInt("Id");
                 String exercise = resultSet.getString("exercise");
-                Date date = resultSet.getDate("date");
-                Time time = resultSet.getTime("time");
                 System.out.println(id);
                 System.out.println(exercise);
-                System.out.println(date.toString());
-                data.add(new TimelineItems(id, exercise, date.toString(), time.toString()));
-                System.out.println(id);
+                data.add(new TimelineItems(id, exercise));
             }
 
             coachTable.setItems(data);
@@ -451,21 +370,23 @@ public class CoachScreenController implements Initializable {
         Connection con = connectionUser.getConnection();
         try {
             Statement statement = con.createStatement();
-            String query = "Select * From members Where coachId = " + User.id;
+            String query = "Select * From " + ConnectionUser.MEMBERS + " Where coachId = " + User.id;
             ResultSet resultSet = statement.executeQuery(query);
 
             ObservableList<MemberItems> data = FXCollections.observableArrayList();
 
             while (resultSet.next())
             {
-                int id = resultSet.getInt("id");
-                String exercise = resultSet.getString("name");
-                int exerciseId = resultSet.getInt("exercise");
+                // ID | Name | Report
+                int id = resultSet.getInt("Id");
+                String exercise = resultSet.getString("Name");
+                String exerciseId = resultSet.getString("Report");
+
                 System.out.println(id);
                 System.out.println(exercise);
                 System.out.println(exerciseId);
+
                 data.add(new MemberItems(id, exercise, exerciseId));
-                System.out.println(id);
             }
 
             memberTable.setItems(data);
@@ -473,6 +394,76 @@ public class CoachScreenController implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+
+    @FXML
+    private void applyEditProfile(Event event)
+    {
+        boolean isNameEdited, isPassEdited, isAgeEdited;
+        isNameEdited = isPassEdited = isAgeEdited = false;
+        String name = nameTextfield.getText();
+
+        String password = passwordTextfield.getText();
+
+        String age = ageTextfield.getText();
+
+        if (!name.isEmpty() && !name.isBlank())
+        {
+            updateSql(ConnectionUser.COACHES, "Name", name, User.id);
+            isNameEdited = true;
+        }
+        if (!password.isEmpty() && !password.isBlank())
+        {
+            updateSql(ConnectionUser.COACHES, "Password", password, User.id);
+            isPassEdited = true;
+        }
+        if (!age.isEmpty() && !age.isBlank())
+        {
+            updateSql(ConnectionUser.COACHES, "Age", age, User.id);
+            isAgeEdited = true;
+        }
+
+        if (isNameEdited || isPassEdited || isAgeEdited)
+        {
+            String edit = "";
+            if (isNameEdited)
+                edit += "Name Has Been Updated!\n";
+            if (isPassEdited)
+                edit += "Password Has Been Updated!\n";
+            if (isAgeEdited)
+                edit += "Age Has Been Updated!\n";
+            AlertBox.display("Edit Confirmed", edit);
+        }
+
+    }
+
+    private void updateSql(String table, String column, String value, int userId)
+    {
+        try {
+            ConnectionUser connectionUser = new ConnectionUser();
+            Connection conn = connectionUser.getConnection();
+
+            String sql = "update " + table + " set " + column + " = ? where Id = ?;";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, value);
+            preparedStatement.setInt(2, userId);
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    public void logout(Event event)
+    {
+        SceneManager sceneManager = new SceneManager();
+        sceneManager.changeScene("Login.fxml", "Health Club Management System");
+        User.id = 0;
+        User.username = "";
+        User.password = "";
     }
 }
 
