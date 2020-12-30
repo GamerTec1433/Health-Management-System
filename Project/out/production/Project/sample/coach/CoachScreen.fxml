@@ -30,18 +30,6 @@
    <children>
       <AnchorPane layoutX="11.0" prefHeight="780.0" prefWidth="266.0" style="-fx-background-color: #161a1d;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="13.0" layoutY="34.0" prefHeight="45.0" prefWidth="240.0" text="Torpedo GYM" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-               <effect>
-                  <DropShadow blurType="TWO_PASS_BOX" color="#030303" height="29.9" radius="12.225" spread="0.91">
-                     <input>
-                        <Glow level="0.59" />
-                     </input>
-                  </DropShadow>
-               </effect>
-            </Label>
             <VBox alignment="TOP_CENTER" layoutY="118.0" prefHeight="324.0" prefWidth="408.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <JFXButton fx:id="homeBtn" alignment="BASELINE_LEFT" prefHeight="60.0" prefWidth="412.0" ripplerFill="BLACK" style="-fx-background-color: #e5383b; -fx-background-radius: 0;" text="Home" textFill="WHITE" wrapText="true">
@@ -177,18 +165,30 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </JFXButton>
+            <Label alignment="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="45.0" prefWidth="240.0" text="Torpedo GYM" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" color="#030303" height="40.0" radius="22.0" spread="0.79" width="50.0">
+                     <input>
+                        <Glow level="0.64" />
+                     </input>
+                  </DropShadow>
+               </effect>
+            </Label>
          </children>
          <effect>
             <DropShadow radius="14.4475" spread="0.6" width="38.79" />
          </effect>
       </AnchorPane>
-      <AnchorPane fx:id="homePage" layoutX="266.0" layoutY="2.0" prefHeight="766.0" prefWidth="935.0" visible="false">
+      <AnchorPane fx:id="homePage" layoutX="266.0" layoutY="2.0" prefHeight="766.0" prefWidth="935.0">
          <children>
             <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="404.0" prefWidth="907.0">
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #000000, #3f1620, #7d1e32, #be273b, #ff373b);;">
                      <children>
-                        <ImageView fitHeight="404.0" fitWidth="907.0" opacity="0.26" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ImageView fitHeight="404.0" fitWidth="907.0" opacity="0.09" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <image>
                               <Image url="@../Images/member%20background2.jpg" />
                            </image>
@@ -196,7 +196,7 @@
                               <Bloom threshold="0.21" />
                            </effect>
                         </ImageView>
-                        <Label alignment="CENTER" layoutX="113.0" layoutY="162.0" text="Welcome In Torpedo GYM" textFill="WHITE">
+                        <Label alignment="CENTER" layoutX="135.0" layoutY="160.0" text="Welcome In Torpedo GYM" textFill="WHITE" AnchorPane.bottomAnchor="163.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="160.0">
                            <font>
                               <Font name="System Bold" size="55.0" />
                            </font>
@@ -301,7 +301,10 @@
                         <Insets />
                      </opaqueInsets>
                      <effect>
-                        <DropShadow blurType="GAUSSIAN" height="80.3" radius="32.235" spread="0.24" width="50.64" />
+                        <DropShadow blurType="GAUSSIAN" height="58.06" radius="26.675" spread="0.24" width="50.64">
+                           <input>
+                              <Glow level="0.36" />
+                           </input></DropShadow>
                      </effect>
                   </HBox>
                </children>
@@ -531,7 +534,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="addTimelinePage" layoutX="274.0" layoutY="4.0" prefHeight="760.0" prefWidth="920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="addTimelinePage" layoutX="274.0" layoutY="4.0" prefHeight="760.0" prefWidth="920.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane layoutX="45.0" layoutY="36.0" prefHeight="707.0" prefWidth="835.0" style="-fx-background-color: #0b090a; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                <children>

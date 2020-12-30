@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sample.Extra.AlertBoxController;
 
 import java.io.IOException;
 
@@ -13,7 +14,9 @@ public class SceneManager {
     public void changeScene(String fxmlFile, String title)
     {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(fxmlFile));
+            Parent root = loader.load();
 
             Main.window.setTitle(title);
             Main.window.setScene(new Scene(root));
@@ -23,16 +26,22 @@ public class SceneManager {
         }
     }
 
-    public void openWindow(String fxmlFile, String title)
+    public void openAlertBox(String fxmlFile, String title, String message)
     {
         try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(fxmlFile));
+            Parent root = loader.load();
+
+            AlertBoxController alertBox = loader.getController();
+            alertBox.setTitleAndMessage(title, message);
+
             Stage newWindow = new Stage();
             newWindow.setTitle(title);
             newWindow.initModality(Modality.APPLICATION_MODAL);
-
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
-            newWindow.setScene(new Scene(root));
             newWindow.setResizable(false);
+
+            newWindow.setScene(new Scene(root));
             newWindow.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();

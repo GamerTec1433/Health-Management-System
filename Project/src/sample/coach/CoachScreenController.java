@@ -20,6 +20,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static sample.SQLQueries.sendMessageSQL;
+
 public class CoachScreenController implements Initializable {
 
     UIControllers.ButtonsCoachActive buttonsCoachActive;
@@ -47,9 +49,6 @@ public class CoachScreenController implements Initializable {
 
     @FXML
     private JFXButton sendAllMemberBtn;
-
-    @FXML
-    private  JFXButton updateProfileBtn;
 
     // Labels
     @FXML
@@ -258,7 +257,7 @@ public class CoachScreenController implements Initializable {
             ResultSet resultSet = statement.getResultSet();
             while (resultSet.next())
             {
-                isMessageSent = sendMessageSQL(str, con, isMessageSent, resultSet);
+                isMessageSent = SQLQueries.sendMessageSQL(str, con, isMessageSent, resultSet);
             }
             statement.cancel();
         } catch (SQLException throwables) {
@@ -267,10 +266,14 @@ public class CoachScreenController implements Initializable {
 
         if (isMessageSent)
         {
+            SceneManager sceneManager = new SceneManager();
+            sceneManager.openAlertBox("Extra/AlertBox.fxml", "Sending Message", "Message Successfully Sent!");
             System.out.println("Message Sent!");
         }
         else
         {
+            SceneManager sceneManager = new SceneManager();
+            sceneManager.openAlertBox("Extra/AlertBox.fxml", "Sending Message", "Error in sending message, please try again!");
             System.out.println("Message Not Sent!");
         }
     }
@@ -294,7 +297,7 @@ public class CoachScreenController implements Initializable {
             {
                 if (resultSet.getInt("id") == id)
                 {
-                    isMessageSent = sendMessageSQL(str, con, isMessageSent, resultSet);
+                    isMessageSent = SQLQueries.sendMessageSQL(str, con, isMessageSent, resultSet);
                     break;
                 }
             }
@@ -305,26 +308,16 @@ public class CoachScreenController implements Initializable {
 
         if (isMessageSent)
         {
+            SceneManager sceneManager = new SceneManager();
+            sceneManager.openAlertBox("Extra/AlertBox.fxml", "Sending Message", "Message Successfully Sent!");
             System.out.println("Message Sent!");
         }
         else
         {
+            SceneManager sceneManager = new SceneManager();
+            sceneManager.openAlertBox("Extra/AlertBox.fxml", "Sending Message", "Error in sending message, please try again!");
             System.out.println("Message Not Sent!");
         }
-    }
-
-    private boolean sendMessageSQL(String str, Connection con, boolean isMessageSent, ResultSet resultSet) throws SQLException {
-        String sqlInsert = "Insert Into " + ConnectionUser.MESSAGES + " Values (?, ?, ?, ?, ?)";
-        PreparedStatement preparedStatement = con.prepareStatement(sqlInsert);
-        preparedStatement.setInt(1, resultSet.getInt("id"));
-        preparedStatement.setString(2, str);
-        preparedStatement.setDate(3, Date.valueOf(LocalDate.now().toString()));
-        preparedStatement.setInt(4, User.id);
-        preparedStatement.setBoolean(5, false);
-        preparedStatement.execute();
-        preparedStatement.close();
-        isMessageSent = true;
-        return true;
     }
 
     public void addNewTimeline(Event event)
@@ -348,12 +341,13 @@ public class CoachScreenController implements Initializable {
             throwables.printStackTrace();
         }
 
+        SceneManager sceneManager = new SceneManager();
         if (isAdded)
         {
-            AlertBox.display("Timeline Added", "Timeline added");
+            sceneManager.openAlertBox("Extra/AlertBox.fxml", "Timeline Added", "Timeline added");
         }
         else {
-            AlertBox.display("Timeline Error", "Error In Adding Timeline\nPlease Try Again");
+            sceneManager.openAlertBox("Extra/AlertBox.fxml", "Timeline Error", "Error In Adding Timeline Please Try Again");
         }
 
         refreshTimelineTable(null);
@@ -379,12 +373,14 @@ public class CoachScreenController implements Initializable {
             throwables.printStackTrace();
         }
 
+
+        SceneManager sceneManager = new SceneManager();
         if (isAdded)
         {
-            AlertBox.display("Timeline Deleted", "Timeline Deleted");
+            sceneManager.openAlertBox("Extra/AlertBox.fxml", "Timeline Deleted", "Timeline Deleted");
         }
         else {
-            AlertBox.display("Timeline Error", "Error In Deleting Timeline\nPlease Try Again");
+            sceneManager.openAlertBox("Extra/AlertBox.fxml", "Timeline Error", "Error In Deleting Timeline Please Try Again");
         }
 
         refreshTimelineTable(null);
@@ -479,17 +475,17 @@ public class CoachScreenController implements Initializable {
 
         if (!name.isEmpty() && !name.isBlank())
         {
-            updateSql(ConnectionUser.COACHES, "Name", name, User.id);
+            SQLQueries.updateSql(ConnectionUser.COACHES, "Name", name, User.id);
             isNameEdited = true;
         }
         if (!password.isEmpty() && !password.isBlank())
         {
-            updateSql(ConnectionUser.COACHES, "Password", password, User.id);
+            SQLQueries.updateSql(ConnectionUser.COACHES, "Password", password, User.id);
             isPassEdited = true;
         }
         if (!age.isEmpty() && !age.isBlank())
         {
-            updateSql(ConnectionUser.COACHES, "Age", age, User.id);
+            SQLQueries.updateSql(ConnectionUser.COACHES, "Age", age, User.id);
             isAgeEdited = true;
         }
 
@@ -502,27 +498,13 @@ public class CoachScreenController implements Initializable {
                 edit += "Password Has Been Updated!\n";
             if (isAgeEdited)
                 edit += "Age Has Been Updated!\n";
-            AlertBox.display("Edit Confirmed", edit);
+            SceneManager sceneManager = new SceneManager();
+            sceneManager.openAlertBox("Extra/AlertBox.fxml", "Edit Confirmed", edit);
         }
         showProfile();
     }
 
-    private void updateSql(String table, String column, String value, int userId)
-    {
-        try {
-            ConnectionUser connectionUser = new ConnectionUser();
-            Connection conn = connectionUser.getConnection();
 
-            String sql = "update " + table + " set " + column + " = ? where Id = ?;";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, value);
-            preparedStatement.setInt(2, userId);
-            preparedStatement.execute();
-            preparedStatement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
 
 
     @FXML

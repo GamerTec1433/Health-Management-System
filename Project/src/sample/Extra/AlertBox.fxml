@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #202020;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Extra.AlertBoxController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e5383b" height="108.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label fx:id="headerAlert" alignment="CENTER" layoutX="181.0" layoutY="-8.0" prefHeight="116.0" prefWidth="600.0" text="ERROR HEADER" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label fx:id="logAlert" alignment="TOP_CENTER" layoutX="14.0" layoutY="115.0" prefHeight="210.0" prefWidth="572.0" text="ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR " textAlignment="CENTER" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="481.0" layoutY="338.0" onAction="#closeWindow" prefHeight="46.0" prefWidth="105.0" style="-fx-background-color: #e5383b;" text="Okay" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -13,12 +13,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import sample.*;
-import sample.coach.MemberItems;
 import sample.coach.TimelineItems;
 
 import java.net.URL;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -123,7 +121,6 @@ public class MemberScreenController implements Initializable {
         initializeTables();
         intializeButtons();
 
-        UIControllers.setTextFieldNumbers(passwordTextfield);
         UIControllers.setTextFieldNumbers(ageTextfield);
 
         refreshHomeTexts();
@@ -290,7 +287,8 @@ public class MemberScreenController implements Initializable {
                 edit += "Password Has Been Updated!\n";
             if (isAgeEdited)
                 edit += "Age Has Been Updated!\n";
-            AlertBox.display("Edit Confirmed", edit);
+            SceneManager sceneManager = new SceneManager();
+            sceneManager.openAlertBox("Extra/AlertBox.fxml", "Edit Confirmed", edit);
         }
 
     }

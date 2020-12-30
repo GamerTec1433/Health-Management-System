@@ -167,4 +167,17 @@ public class SQLQueries {
         }
         return value;
     }
+    public static boolean sendMessageSQL(String str, Connection con, boolean isMessageSent, ResultSet resultSet) throws SQLException {
+        String sqlInsert = "Insert Into " + ConnectionUser.MESSAGES + " Values (?, ?, ?, ?, ?)";
+        PreparedStatement preparedStatement = con.prepareStatement(sqlInsert);
+        preparedStatement.setInt(1, resultSet.getInt("id"));
+        preparedStatement.setString(2, str);
+        preparedStatement.setDate(3, Date.valueOf(LocalDate.now().toString()));
+        preparedStatement.setInt(4, User.id);
+        preparedStatement.setBoolean(5, false);
+        preparedStatement.execute();
+        preparedStatement.close();
+        isMessageSent = true;
+        return true;
+    }
 }
