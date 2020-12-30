@@ -11,7 +11,10 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,15 +23,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #E5EFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.coach.CoachScreenController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #202020;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.coach.CoachScreenController">
    <children>
-      <AnchorPane layoutX="11.0" prefHeight="780.0" prefWidth="266.0" style="-fx-background-color: #5465ff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="11.0" prefHeight="780.0" prefWidth="266.0" style="-fx-background-color: #161a1d;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="TOP_CENTER" layoutY="22.0" prefHeight="324.0" prefWidth="408.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <VBox alignment="TOP_CENTER" layoutY="118.0" prefHeight="324.0" prefWidth="408.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <JFXButton fx:id="homeBtn" alignment="BASELINE_LEFT" prefHeight="60.0" prefWidth="412.0" ripplerFill="BLACK" style="-fx-background-color: #bfd7ff; -fx-background-radius: 0;" text="Home" textFill="#4d4d4d" wrapText="true">
+                  <JFXButton fx:id="homeBtn" alignment="BASELINE_LEFT" prefHeight="60.0" prefWidth="412.0" ripplerFill="BLACK" style="-fx-background-color: #e5383b; -fx-background-radius: 0;" text="Home" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -38,7 +42,7 @@
                               <Image url="@../Images/home.png" />
                            </image>
                            <effect>
-                              <ColorAdjust brightness="-0.8" />
+                              <ColorAdjust brightness="0.01" />
                            </effect>
                         </ImageView>
                      </graphic>
@@ -49,7 +53,7 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="timelineBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="412.0" ripplerFill="BLACK" style="-fx-background-color: #788bff; -fx-background-radius: 0;" text="Timeline" textFill="WHITE" wrapText="true">
+                  <JFXButton fx:id="timelineBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="412.0" ripplerFill="BLACK" style="-fx-background-color: #660708; -fx-background-radius: 0;" text="Timeline List" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -109,7 +113,7 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="addTimelineBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="60.0" prefWidth="412.0" ripplerFill="BLACK" style="-fx-background-radius: 0;" text="Add Timeline" textFill="WHITE" wrapText="true">
+                  <JFXButton fx:id="addTimelineBtn" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="130.0" prefHeight="60.0" prefWidth="412.0" ripplerFill="BLACK" style="-fx-background-radius: 0;" text="Timeline Manager" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -156,36 +160,81 @@
                   <Insets />
                </opaqueInsets>
             </VBox>
-            <JFXButton layoutX="14.0" layoutY="722.0" onAction="#logout" style="-fx-background-color: #e2fdff;" text="Logout" textFill="#4d4d4d">
+            <JFXButton layoutX="14.0" layoutY="722.0" onAction="#logout" style="-fx-background-color: #e5383b;" text="Logout" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </JFXButton>
+            <Label alignment="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="45.0" prefWidth="240.0" text="Torpedo GYM" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" color="#030303" height="40.0" radius="22.0" spread="0.79" width="50.0">
+                     <input>
+                        <Glow level="0.64" />
+                     </input>
+                  </DropShadow>
+               </effect>
+            </Label>
          </children>
+         <effect>
+            <DropShadow radius="14.4475" spread="0.6" width="38.79" />
+         </effect>
       </AnchorPane>
-      <AnchorPane fx:id="homePage" layoutX="266.0" layoutY="8.0" prefHeight="760.0" prefWidth="935.0" visible="false">
+      <AnchorPane fx:id="homePage" layoutX="266.0" layoutY="2.0" prefHeight="766.0" prefWidth="935.0">
          <children>
-            <VBox layoutY="74.0" prefHeight="630.0" prefWidth="852.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
+            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="404.0" prefWidth="907.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #000000, #3f1620, #7d1e32, #be273b, #ff373b);;">
+                     <children>
+                        <ImageView fitHeight="404.0" fitWidth="907.0" opacity="0.09" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../Images/member%20background2.jpg" />
+                           </image>
+                           <effect>
+                              <Bloom threshold="0.21" />
+                           </effect>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutX="135.0" layoutY="160.0" text="Welcome In Torpedo GYM" textFill="WHITE" AnchorPane.bottomAnchor="163.0" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="160.0">
+                           <font>
+                              <Font name="System Bold" size="55.0" />
+                           </font>
+                           <effect>
+                              <DropShadow blurType="TWO_PASS_BOX" spread="0.87" />
+                           </effect>
+                        </Label>
+                     </children>
+                     <effect>
+                        <Glow level="0.59" />
+                     </effect>
+                  </AnchorPane>
+               </children>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" height="50.0" radius="24.5" spread="0.29" width="50.0" />
+               </effect>
+            </AnchorPane>
+            <VBox layoutX="50.0" layoutY="459.0" prefHeight="258.0" prefWidth="835.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="286.0" prefWidth="852.0">
                      <children>
-                        <AnchorPane prefHeight="205.0" prefWidth="200.0">
+                        <AnchorPane layoutX="336.0" layoutY="10.0" prefHeight="205.0" prefWidth="200.0">
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #9bb1ff, #879fff, #748cff, #6379ff, #5465ff);; -fx-background-radius: 15em;">
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #000000, #3f1620, #7d1e32, #be273b, #ff373b);; -fx-background-radius: 15em;">
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../Images/group.png" />
                                        </image>
                                     </ImageView>
-                                    <Label alignment="CENTER" layoutX="45.0" layoutY="130.0" text="Members" textFill="WHITE">
+                                    <Label alignment="CENTER" layoutX="24.0" layoutY="135.0" text="Your Members" textFill="WHITE">
                                        <font>
-                                          <Font name="System Bold" size="25.0" />
+                                          <Font name="System Bold" size="22.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <Label alignment="CENTER" layoutY="200.0" prefHeight="17.0" prefWidth="200.0" text="10000" textFill="#4d4d4d">
+                              <Label fx:id="homeMemText" alignment="CENTER" layoutY="200.0" prefHeight="17.0" prefWidth="200.0" text="9999" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="40.0" />
                                  </font>
@@ -195,23 +244,23 @@
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>
                         </AnchorPane>
-                        <AnchorPane layoutX="336.0" layoutY="10.0" prefHeight="205.0" prefWidth="200.0">
+                        <AnchorPane prefHeight="205.0" prefWidth="200.0">
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #9bb1ff, #879fff, #748cff, #6379ff, #5465ff);; -fx-background-radius: 15em;">
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #000000, #3f1620, #7d1e32, #be273b, #ff373b);; -fx-background-radius: 15em;">
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../Images/group.png" />
+                                          <Image url="@../Images/barbell.png" />
                                        </image>
                                     </ImageView>
-                                    <Label alignment="CENTER" layoutX="45.0" layoutY="130.0" text="Members" textFill="WHITE">
+                                    <Label alignment="CENTER" layoutX="47.0" layoutY="135.0" text="Exercises" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <Label alignment="CENTER" layoutY="200.0" prefHeight="17.0" prefWidth="200.0" text="10000" textFill="#4d4d4d">
+                              <Label fx:id="homeExerText" alignment="CENTER" layoutY="200.0" prefHeight="17.0" prefWidth="200.0" text="9999" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="40.0" />
                                  </font>
@@ -223,21 +272,21 @@
                         </AnchorPane>
                         <AnchorPane layoutX="236.0" layoutY="10.0" prefHeight="205.0" prefWidth="200.0">
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #9bb1ff, #879fff, #748cff, #6379ff, #5465ff);; -fx-background-radius: 15em;">
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #000000, #3f1620, #7d1e32, #be273b, #ff373b);; -fx-background-radius: 15em;">
                                  <children>
                                     <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../Images/group.png" />
+                                          <Image url="@../Images/add-user.png" />
                                        </image>
                                     </ImageView>
-                                    <Label alignment="CENTER" layoutX="45.0" layoutY="130.0" text="Members" textFill="WHITE">
+                                    <Label alignment="CENTER" layoutX="25.0" layoutY="135.0" text="New Members" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                                        <font>
-                                          <Font name="System Bold" size="25.0" />
+                                          <Font name="System Bold" size="22.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <Label alignment="CENTER" layoutY="200.0" prefHeight="17.0" prefWidth="200.0" text="10000" textFill="#4d4d4d">
+                              <Label fx:id="homePlusText" alignment="CENTER" layoutY="200.0" prefHeight="17.0" prefWidth="200.0" text="9999" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="40.0" />
                                  </font>
@@ -251,322 +300,432 @@
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="286.0" prefWidth="852.0">
-                     <children>
-                        <AnchorPane prefHeight="205.0" prefWidth="200.0">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #9bb1ff, #879fff, #748cff, #6379ff, #5465ff);; -fx-background-radius: 15em;">
-                                 <children>
-                                    <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Images/group.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label alignment="CENTER" layoutX="45.0" layoutY="130.0" text="Members" textFill="WHITE">
-                                       <font>
-                                          <Font name="System Bold" size="25.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </AnchorPane>
-                              <Label alignment="CENTER" layoutY="200.0" prefHeight="17.0" prefWidth="200.0" text="10000" textFill="#4d4d4d">
-                                 <font>
-                                    <Font name="System Bold" size="40.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </HBox.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="336.0" layoutY="10.0" prefHeight="205.0" prefWidth="200.0">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #9bb1ff, #879fff, #748cff, #6379ff, #5465ff);; -fx-background-radius: 15em;">
-                                 <children>
-                                    <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Images/group.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label alignment="CENTER" layoutX="45.0" layoutY="130.0" text="Members" textFill="WHITE">
-                                       <font>
-                                          <Font name="System Bold" size="25.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </AnchorPane>
-                              <Label alignment="CENTER" layoutY="200.0" prefHeight="17.0" prefWidth="200.0" text="10000" textFill="#4d4d4d">
-                                 <font>
-                                    <Font name="System Bold" size="40.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </HBox.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="236.0" layoutY="10.0" prefHeight="205.0" prefWidth="200.0">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to top, #9bb1ff, #879fff, #748cff, #6379ff, #5465ff);; -fx-background-radius: 15em;">
-                                 <children>
-                                    <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="50.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Images/group.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label alignment="CENTER" layoutX="45.0" layoutY="130.0" text="Members" textFill="WHITE">
-                                       <font>
-                                          <Font name="System Bold" size="25.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </AnchorPane>
-                              <Label alignment="CENTER" layoutY="200.0" prefHeight="17.0" prefWidth="200.0" text="10000" textFill="#4d4d4d">
-                                 <font>
-                                    <Font name="System Bold" size="40.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="20.0" right="20.0" />
-                           </HBox.margin>
-                        </AnchorPane>
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
+                     <effect>
+                        <DropShadow blurType="GAUSSIAN" height="58.06" radius="26.675" spread="0.24" width="50.64">
+                           <input>
+                              <Glow level="0.36" />
+                           </input></DropShadow>
+                     </effect>
                   </HBox>
                </children>
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="timelinePage" layoutX="349.0" layoutY="8.0" prefHeight="752.0" prefWidth="927.0" visible="false" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="8.0">
+      <AnchorPane fx:id="timelinePage" layoutX="349.0" layoutY="8.0" prefHeight="768.0" prefWidth="920.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="24.0" prefHeight="17.0" prefWidth="701.0" text="Plan Timeline" textAlignment="CENTER" textFill="#5465ff" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
-               <font>
-                  <Font name="System Bold" size="45.0" />
-               </font>
-            </Label>
-            <TableView fx:id="coachTable" layoutX="20.0" layoutY="98.0" prefHeight="594.0" prefWidth="812.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-              <columns>
-                  <TableColumn fx:id="idCol" editable="false" prefWidth="75.0" text="ID" />
-                <TableColumn fx:id="exerciseCol" editable="false" prefWidth="75.0" text="Exercise" />
-              </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </TableView>
-            <JFXButton layoutX="370.0" layoutY="702.0" onAction="#refreshTimelineTable" prefHeight="44.0" prefWidth="158.0" style="-fx-background-color: #5465ff;" text="Refresh Table" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="370.0">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="profilePage" layoutX="274.0" layoutY="14.0" prefHeight="760.0" prefWidth="920.0">
-         <children>
-            <AnchorPane layoutX="45.0" layoutY="36.0" prefHeight="707.0" prefWidth="835.0" style="-fx-background-color: #D6E6FF;">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0b090a; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="66.0" prefWidth="835.0" text="Profile" textAlignment="CENTER" textFill="#5465ff">
-                     <font>
-                        <Font name="System Bold" size="45.0" />
-                     </font>
-                  </Label>
-                  <GridPane layoutX="122.0" layoutY="213.0" prefHeight="197.0" prefWidth="591.0" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="122.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.0" minWidth="10.0" prefWidth="390.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="405.0" minWidth="10.0" prefWidth="395.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
+                  <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label prefHeight="76.0" prefWidth="198.0" text="Name :" textFill="#4d4d4d" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="21.0" />
-                           </font>
-                        </Label>
-                        <JFXTextField fx:id="nameTextfield" focusColor="#00a8e8" prefHeight="44.0" prefWidth="545.0" promptText="Name..." style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#003459" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </JFXTextField>
-                        <Label layoutX="10.0" layoutY="10.0" prefHeight="76.0" prefWidth="198.0" text="Password :" textFill="#4d4d4d" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="System Bold" size="21.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="53.0" prefHeight="76.0" prefWidth="198.0" text="Age :" textFill="#4d4d4d" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="System Bold" size="21.0" />
-                           </font>
-                        </Label>
-                        <JFXTextField fx:id="passwordTextfield" focusColor="#00a8e8" layoutX="303.0" layoutY="10.0" prefHeight="44.0" prefWidth="545.0" promptText="Password..." style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#003459" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </JFXTextField>
-                        <JFXTextField fx:id="ageTextfield" focusColor="#00a8e8" layoutX="303.0" layoutY="10.0" prefHeight="44.0" prefWidth="545.0" promptText="Age..." style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#003459" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </JFXTextField>
-                     </children>
-                  </GridPane>
-                  <JFXButton layoutX="272.0" layoutY="447.0" onAction="#applyEditProfile" style="-fx-background-color: #5465ff;" text="Apply Edit" textFill="WHITE" AnchorPane.leftAnchor="272.0" AnchorPane.rightAnchor="272.0">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="membersPage" layoutX="274.0" prefHeight="772.0" prefWidth="920.0" visible="false">
-         <children>
-            <Label alignment="CENTER" layoutX="76.0" layoutY="21.0" prefHeight="17.0" prefWidth="701.0" text="Coach Members" textAlignment="CENTER" textFill="#5465ff" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
-               <font>
-                  <Font name="System Bold" size="45.0" />
-               </font>
-            </Label>
-            <TableView fx:id="memberTable" layoutX="20.0" layoutY="94.0" prefHeight="594.0" prefWidth="812.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-               <columns>
-                  <TableColumn fx:id="idColMem" editable="false" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="nameColMem" editable="false" prefWidth="75.0" text="Name" />
-                  <TableColumn fx:id="exerciseIdColMem" editable="false" prefWidth="75.0" text="Report" />
-               </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </TableView>
-            <JFXButton layoutX="370.0" layoutY="702.0" onAction="#refreshTimelineTable" prefHeight="44.0" prefWidth="181.0" style="-fx-background-color: #5465ff;" text="Refresh Table" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="370.0" AnchorPane.rightAnchor="370.0">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="addTimelinePage" layoutX="274.0" layoutY="4.0" prefHeight="760.0" prefWidth="920.0" visible="false">
-         <children>
-            <AnchorPane layoutX="45.0" layoutY="36.0" prefHeight="707.0" prefWidth="835.0" style="-fx-background-color: #D6E6FF;">
-               <children>
-                  <Label alignment="CENTER" prefHeight="66.0" prefWidth="835.0" text="Add Timeline" textAlignment="CENTER" textFill="#5465ff">
-                     <font>
-                        <Font name="System Bold" size="45.0" />
-                     </font>
-                  </Label>
-                  <GridPane layoutX="122.0" layoutY="213.0" prefHeight="129.0" prefWidth="591.0" AnchorPane.leftAnchor="122.0" AnchorPane.rightAnchor="122.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.0" minWidth="10.0" prefWidth="390.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="405.0" minWidth="10.0" prefWidth="395.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Label prefHeight="76.0" prefWidth="198.0" text="Exercise Name :" textFill="#4d4d4d" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="21.0" />
-                           </font>
-                        </Label>
-                        <JFXTextField fx:id="exerciseNameText" focusColor="#00a8e8" prefHeight="44.0" prefWidth="545.0" promptText="Name..." style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#003459" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </JFXTextField>
-                     </children>
-                  </GridPane>
-                  <JFXButton fx:id="newTimeLineBtn" layoutX="272.0" layoutY="342.0" onAction="#addNewTimeline" style="-fx-background-color: #5465ff;" text="New Timeline" textFill="WHITE" AnchorPane.leftAnchor="272.0" AnchorPane.rightAnchor="272.0">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="messagesPage" layoutX="274.0" layoutY="8.0" prefHeight="760.0" prefWidth="920.0" visible="false">
-         <children>
-            <Label alignment="CENTER" layoutX="76.0" layoutY="14.0" prefHeight="17.0" prefWidth="701.0" text="Messages" textAlignment="CENTER" textFill="#5465ff">
-               <font>
-                  <Font name="System Bold" size="45.0" />
-               </font>
-            </Label>
-            <AnchorPane layoutX="62.0" layoutY="165.0" prefHeight="444.0" prefWidth="729.0" style="-fx-background-color: #D6E6FF;">
-               <children>
-                  <Label alignment="CENTER" layoutX="207.0" layoutY="14.0" text="Send Message" textFill="#4d4d4d" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <JFXRadioButton fx:id="sendMessOneRadio" layoutX="100.0" layoutY="67.0" selected="true" text="One Member" textFill="#4d4d4d" AnchorPane.leftAnchor="100.0">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="sendMessageRadio" />
-                     </toggleGroup>
-                  </JFXRadioButton>
-                  <JFXRadioButton fx:id="sendMessAllRadio" layoutX="499.0" layoutY="67.0" text="All Member" textFill="#4d4d4d" toggleGroup="$sendMessageRadio" AnchorPane.rightAnchor="100.0">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </JFXRadioButton>
-                  <VBox fx:id="sendOneVbox" alignment="TOP_CENTER" layoutX="35.0" layoutY="117.0" prefHeight="311.0" prefWidth="660.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="117.0">
-                     <children>
-                        <JFXTextField fx:id="memberIDText" focusColor="#6df3ff" prefHeight="36.0" prefWidth="427.0" promptText="Member ID" style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#1e1e1e">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </JFXTextField>
-                        <JFXTextArea fx:id="memberTextArea" focusColor="#6df3ff" prefHeight="160.0" prefWidth="660.0" promptText="Type Message" style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#1e1e1e">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
+                        <VBox alignment="TOP_CENTER" prefHeight="81.0" prefWidth="219.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="66.0" prefWidth="835.0" text="Timeline" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="45.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="115.58578491210938" endY="2.7620792388916016E-4" startX="-100.0" stroke="#970000" strokeLineJoin="ROUND" strokeWidth="2.0" />
+                           </children>
+                        </VBox>
+                        <TableView fx:id="coachTable" prefHeight="475.0" prefWidth="787.0" style="-fx-background-color: #23231B;">
+                          <columns>
+                              <TableColumn fx:id="idCol" editable="false" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="exerciseCol" editable="false" prefWidth="75.0" text="Exercise" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                            <VBox.margin>
-                              <Insets top="20.0" />
+                              <Insets bottom="20.0" top="20.0" />
                            </VBox.margin>
-                        </JFXTextArea>
-                        <JFXButton fx:id="sendMemberBtn" style="-fx-background-color: #5465ff;" text="Send Message" textFill="WHITE">
+                        </TableView>
+                        <JFXButton onAction="#refreshTimelineTable" prefHeight="44.0" prefWidth="100.0" style="-fx-background-color: #e5383b;" text="Refresh" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="System Bold" size="17.0" />
                            </font>
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </JFXButton>
-                     </children>
-                  </VBox>
-                  <VBox fx:id="sendAllVbox" alignment="TOP_CENTER" layoutX="36.0" layoutY="119.0" prefHeight="311.0" prefWidth="658.0" visible="false" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="119.0">
-                     <children>
-                        <JFXTextArea fx:id="allMemberTextArea" focusColor="#6df3ff" prefHeight="197.0" prefWidth="463.0" promptText="Type Message" style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#1e1e1e">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </JFXTextArea>
-                        <JFXButton fx:id="sendAllMemberBtn" style="-fx-background-color: #5465ff;" text="Send Message" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
                         </JFXButton>
                      </children>
                   </VBox>
                </children>
+               <effect>
+                  <DropShadow height="50.0" radius="24.5" spread="0.55" width="50.0" />
+               </effect>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="membersPage" layoutX="274.0" prefHeight="772.0" prefWidth="920.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0b090a; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="81.0" prefWidth="219.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="66.0" prefWidth="835.0" text="Members Table" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="45.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="268.5857849121094" endY="1.5497207641601562E-6" startX="-100.0" stroke="#970000" strokeLineJoin="ROUND" strokeWidth="2.0" />
+                           </children>
+                        </VBox>
+                        <TableView fx:id="memberTable" prefHeight="468.0" prefWidth="780.0" style="-fx-background-color: #23231B;">
+                           <columns>
+                              <TableColumn fx:id="idColMem" editable="false" prefWidth="75.0" text="ID" />
+                              <TableColumn fx:id="nameColMem" editable="false" prefWidth="75.0" text="Name" />
+                              <TableColumn fx:id="exerciseIdColMem" editable="false" prefWidth="75.0" text="Report" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
+                        </TableView>
+                        <JFXButton onAction="#refreshTimelineTable" prefHeight="44.0" prefWidth="100.0" style="-fx-background-color: #e5383b;" text="Refresh" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+               <effect>
+                  <DropShadow height="50.0" radius="24.5" spread="0.55" width="50.0" />
+               </effect>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="profilePage" layoutX="274.0" layoutY="14.0" prefHeight="760.0" prefWidth="920.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane layoutX="45.0" layoutY="36.0" prefHeight="707.0" prefWidth="835.0" style="-fx-background-color: #0b090a; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="81.0" prefWidth="219.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="66.0" prefWidth="835.0" text="Profile" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="45.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="115.58578491210938" endY="2.7620792388916016E-4" startX="-100.0" stroke="#970000" strokeLineJoin="ROUND" strokeWidth="2.0" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="482.0" prefWidth="795.0">
+                           <children>
+                              <GridPane alignment="TOP_CENTER" prefHeight="174.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label prefHeight="76.0" prefWidth="198.0" text="Username :" textFill="WHITE" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="10.0" prefHeight="76.0" prefWidth="198.0" text="Age :" textFill="WHITE" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="10.0" prefHeight="76.0" prefWidth="198.0" text="ID :" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="nameProfileText" alignment="CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" text="NAME" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="ageProfileText" alignment="CENTER" contentDisplay="TOP" layoutX="455.0" layoutY="17.0" text="AGE" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="idProfileText" alignment="CENTER" contentDisplay="TOP" layoutX="466.0" layoutY="61.0" text="ID" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                              <Line endX="510.5857849121094" endY="1.5497207641601562E-6" startX="-100.0" stroke="#bc0000" strokeLineJoin="ROUND" strokeWidth="2.0">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" top="20.0" />
+                                 </VBox.margin>
+                              </Line>
+                              <Label alignment="CENTER" text="EDIT PROFILE" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="115.58578491210938" endY="2.7620792388916016E-4" startX="-100.0" stroke="#bc0000" strokeLineJoin="ROUND" strokeWidth="2.0">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" />
+                                 </VBox.margin>
+                              </Line>
+                              <GridPane prefHeight="197.0" prefWidth="591.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.0" minWidth="10.0" prefWidth="390.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="405.0" minWidth="10.0" prefWidth="395.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label prefHeight="76.0" prefWidth="198.0" text="Name :" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXTextField fx:id="nameTextfield" focusColor="#e50000" prefHeight="44.0" prefWidth="545.0" promptText="Name..." style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#2c0000" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                    </JFXTextField>
+                                    <Label layoutX="10.0" layoutY="10.0" prefHeight="76.0" prefWidth="198.0" text="Password :" textFill="WHITE" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="53.0" prefHeight="76.0" prefWidth="198.0" text="Age :" textFill="WHITE" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXTextField fx:id="passwordTextfield" focusColor="#e50000" layoutX="303.0" layoutY="10.0" prefHeight="44.0" prefWidth="545.0" promptText="Password..." style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#2c0000" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextField fx:id="ageTextfield" focusColor="#e50000" layoutX="303.0" layoutY="10.0" prefHeight="44.0" prefWidth="545.0" promptText="Age..." style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#2c0000" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </JFXTextField>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                        <JFXButton onAction="#applyEditProfile" style="-fx-background-color: #e5383b;" text="Apply Edit" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+               <effect>
+                  <DropShadow height="50.0" radius="24.5" spread="0.55" width="50.0" />
+               </effect>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="addTimelinePage" layoutX="274.0" layoutY="4.0" prefHeight="760.0" prefWidth="920.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane layoutX="45.0" layoutY="36.0" prefHeight="707.0" prefWidth="835.0" style="-fx-background-color: #0b090a; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="244.0" layoutY="16.0" prefHeight="659.0" prefWidth="795.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="81.0" prefWidth="219.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="66.0" prefWidth="835.0" text="Add Timeline" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="45.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="256.5857849121094" endY="1.5497207641601562E-6" startX="-100.0" stroke="#970000" strokeLineJoin="ROUND" strokeWidth="2.0" />
+                           </children>
+                        </VBox>
+                        <GridPane prefHeight="129.0" prefWidth="591.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.0" minWidth="10.0" prefWidth="390.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="405.0" minWidth="10.0" prefWidth="395.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label prefHeight="76.0" prefWidth="198.0" text="Exercise Name :" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="exerciseNameText" focusColor="#e50000" prefHeight="44.0" prefWidth="545.0" promptText="Name..." style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#2c0000" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </JFXTextField>
+                           </children>
+                        </GridPane>
+                        <JFXButton fx:id="newTimeLineBtn" onAction="#addNewTimeline" style="-fx-background-color: #e5383b;" text="New Timeline" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <Line endX="516.5858154296875" endY="1.5497207641601562E-6" startX="-100.0" stroke="#970000" strokeLineJoin="ROUND" strokeWidth="2.0">
+                           <VBox.margin>
+                              <Insets bottom="50.0" top="50.0" />
+                           </VBox.margin>
+                        </Line>
+                        <VBox alignment="TOP_CENTER" prefHeight="81.0" prefWidth="219.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="66.0" prefWidth="835.0" text="Delete Timeline" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="45.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="256.5857849121094" endY="1.5497207641601562E-6" startX="-100.0" stroke="#970000" strokeLineJoin="ROUND" strokeWidth="2.0" />
+                           </children>
+                        </VBox>
+                        <GridPane layoutX="10.0" layoutY="91.0" prefHeight="129.0" prefWidth="591.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="426.0" minWidth="10.0" prefWidth="390.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="405.0" minWidth="10.0" prefWidth="395.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label prefHeight="76.0" prefWidth="198.0" text="Exercise ID :" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="exerciseIDText" focusColor="#e50000" prefHeight="44.0" prefWidth="545.0" promptText="ID..." style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#2c0000" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </JFXTextField>
+                           </children>
+                        </GridPane>
+                        <JFXButton fx:id="deleteTimeLineBtn" layoutX="329.0" layoutY="220.0" onAction="#deleteNewTimeline" style="-fx-background-color: #e5383b;" text="Delete Timeline" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+               <effect>
+                  <DropShadow height="50.0" radius="24.5" spread="0.55" width="50.0" />
+               </effect>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="messagesPage" layoutX="274.0" layoutY="8.0" prefHeight="760.0" prefWidth="920.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane layoutX="62.0" layoutY="165.0" prefHeight="444.0" prefWidth="729.0" style="-fx-background-color: #0b090a; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="81.0" prefWidth="219.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="66.0" prefWidth="835.0" text="Add Timeline" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="45.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="256.5857849121094" endY="1.5497207641601562E-6" startX="-100.0" stroke="#970000" strokeLineJoin="ROUND" strokeWidth="2.0" />
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <JFXRadioButton fx:id="sendMessOneRadio" selected="true" style="-jfx-selected-color: #e5383b;" text="One Member" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="sendMessageRadio" />
+                                 </toggleGroup>
+                                 <HBox.margin>
+                                    <Insets right="100.0" />
+                                 </HBox.margin>
+                              </JFXRadioButton>
+                              <JFXRadioButton fx:id="sendMessAllRadio" style="-jfx-selected-color: #e5383b;" text="All Member" textFill="WHITE" toggleGroup="$sendMessageRadio">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="100.0" />
+                                 </HBox.margin>
+                              </JFXRadioButton>
+                           </children>
+                        </HBox>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <VBox fx:id="sendOneVbox" alignment="TOP_CENTER" prefHeight="311.0" prefWidth="660.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+                                 <children>
+                                    <JFXTextField fx:id="memberIDText" focusColor="#6df3ff" prefHeight="36.0" prefWidth="427.0" promptText="Member ID" style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#1e1e1e">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </JFXTextField>
+                                    <JFXTextArea fx:id="memberTextArea" focusColor="#6df3ff" prefHeight="160.0" prefWidth="660.0" promptText="Type Message" style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#1e1e1e">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </JFXTextArea>
+                                    <JFXButton fx:id="sendMemberBtn" style="-fx-background-color: #e5383b;" text="Send Message" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </JFXButton>
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="sendAllVbox" alignment="TOP_CENTER" prefHeight="311.0" prefWidth="658.0" visible="false" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+                                 <children>
+                                    <JFXTextArea fx:id="allMemberTextArea" focusColor="#6df3ff" prefHeight="197.0" prefWidth="463.0" promptText="Type Message" style="-fx-text-fill: #4d4d4d; -fx-background-color: #EDEDED;" unFocusColor="#1e1e1e">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </JFXTextArea>
+                                    <JFXButton fx:id="sendAllMemberBtn" style="-fx-background-color: #e5383b;" text="Send Message" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="20.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </JFXButton>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+               <effect>
+                  <DropShadow height="50.0" radius="24.5" spread="0.55" width="50.0" />
+               </effect>
             </AnchorPane>
          </children>
       </AnchorPane>

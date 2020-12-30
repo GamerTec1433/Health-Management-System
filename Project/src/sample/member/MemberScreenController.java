@@ -297,7 +297,6 @@ public class MemberScreenController implements Initializable {
 
 
 
-
     @FXML
     public void logout(Event event)
     {

@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -49,6 +50,25 @@ public class CoachScreenController implements Initializable {
 
     @FXML
     private  JFXButton updateProfileBtn;
+
+    // Labels
+    @FXML
+    private Label idProfileText;
+
+    @FXML
+    private Label nameProfileText;
+
+    @FXML
+    private Label ageProfileText;
+
+    @FXML
+    private Label homeMemText;
+
+    @FXML
+    private Label homeExerText;
+
+    @FXML
+    private Label homePlusText;
 
     // Radio
     @FXML
@@ -97,6 +117,9 @@ public class CoachScreenController implements Initializable {
     private JFXTextField exerciseNameText;
 
     @FXML
+    private JFXTextField exerciseIDText;
+
+    @FXML
     private JFXTextField nameTextfield;
 
     @FXML
@@ -104,6 +127,7 @@ public class CoachScreenController implements Initializable {
 
     @FXML
     private JFXTextField ageTextfield;
+
 
     // Timeline Table
     public TableView<TimelineItems> coachTable;
@@ -134,6 +158,24 @@ public class CoachScreenController implements Initializable {
         UIControllers.setTextFieldNumbers(memberIDText);
 
         initializeButtons();
+        showProfile();
+        showHomeAnalysis();
+    }
+
+    public void showHomeAnalysis()
+    {
+        homeMemText.setText(SQLQueries.getCount("Id", ConnectionUser.MEMBERS, "CoachId", Integer.toString(User.id)));
+
+        homeExerText.setText(SQLQueries.getCount("Id", ConnectionUser.EXERCISE));
+
+        homePlusText.setText(SQLQueries.getCount("Sdate", ConnectionUser.BILLING, "Sdate", Date.valueOf(LocalDate.now()).toString()));
+    }
+
+    public void showProfile()
+    {
+        nameProfileText.setText(SQLQueries.getString("Name", ConnectionUser.COACHES, User.id));
+        ageProfileText.setText(Integer.toString(SQLQueries.getInt("Age", ConnectionUser.COACHES, User.id)));
+        idProfileText.setText(Integer.toString(SQLQueries.getInt("Id", ConnectionUser.COACHES, User.id)));
     }
 
     ArrayList<AnchorPane> anchors;
@@ -168,7 +210,7 @@ public class CoachScreenController implements Initializable {
             b.setOnMouseEntered(e->{
                 if (buttonsCoachActive == UIControllers.ButtonsCoachActive.values()[finalI]) return;
                 System.out.println(UIControllers.ButtonsCoachActive.values()[finalI] + " " + buttonsCoachActive);
-                UIControllers.changeStyleBackground(b, ProjectColors.SECONDARY_COLOR, ProjectColors.BLACK_COLOR, -.8);
+                UIControllers.changeStyleBackground(b, ProjectColors.SECONDARY_COLOR, ProjectColors.WHITE_COLOR, 0);
             });
             b.setOnMouseExited(e->{
                 if (buttonsCoachActive == UIControllers.ButtonsCoachActive.values()[finalI]) return;
@@ -189,11 +231,11 @@ public class CoachScreenController implements Initializable {
         });
 
         sendMemberBtn.setOnAction(e->{
-            sendMessage(allMemberTextArea);
+            sendMessage(memberTextArea, memberIDText);
         });
 
         sendAllMemberBtn.setOnAction(e->{
-            sendMessage(memberTextArea, memberIDText);
+            sendMessage(allMemberTextArea);
         });
 
         //Show Home Page
@@ -285,8 +327,6 @@ public class CoachScreenController implements Initializable {
         return true;
     }
 
-
-
     public void addNewTimeline(Event event)
     {
         boolean isAdded = false;
@@ -318,8 +358,37 @@ public class CoachScreenController implements Initializable {
 
         refreshTimelineTable(null);
     }
+    public void deleteNewTimeline(Event event)
+    {
+        boolean isAdded = false;
+        String exerciseId = exerciseIDText.getText();
 
+        ConnectionUser connectionUser = new ConnectionUser();
+        Connection con = connectionUser.getConnection();
 
+        try {
+            String sql = "delete from " + ConnectionUser.EXERCISE + " where Id = ?" ;
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, exerciseId);
+            preparedStatement.execute();
+            preparedStatement.close();
+
+            isAdded = true;
+        } catch (SQLException throwables) {
+            isAdded = false;
+            throwables.printStackTrace();
+        }
+
+        if (isAdded)
+        {
+            AlertBox.display("Timeline Deleted", "Timeline Deleted");
+        }
+        else {
+            AlertBox.display("Timeline Error", "Error In Deleting Timeline\nPlease Try Again");
+        }
+
+        refreshTimelineTable(null);
+    }
 
     private void initializeTables()
     {
@@ -435,7 +504,7 @@ public class CoachScreenController implements Initializable {
                 edit += "Age Has Been Updated!\n";
             AlertBox.display("Edit Confirmed", edit);
         }
-
+        showProfile();
     }
 
     private void updateSql(String table, String column, String value, int userId)

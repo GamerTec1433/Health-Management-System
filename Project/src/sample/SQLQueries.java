@@ -42,6 +42,25 @@ public class SQLQueries {
         }
         return value;
     }
+    public static String getCount(String columnCount, String table, String where , String cond){
+        String value = "";
+
+        String sql = "Select count(" + columnCount + ") from " + table + " where " + where + " = " + cond;
+        ConnectionUser connectionUser = new ConnectionUser();
+        Connection conn = connectionUser.getConnection();
+
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.execute(sql);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            value += rs.getInt(1);
+            stmt.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return value;
+    }
     public static String getDateDiff(String columnName, String table, int id) {
         String value = "";
 
@@ -57,7 +76,6 @@ public class SQLQueries {
             {
                 Date subs = rs.getDate(1);
                 Date nowDate = Date.valueOf(LocalDate.now().toString());
-                System.out.println(subs);
                 long time = subs.getTime() - nowDate.getTime();
 
                 value += (time / (1000 * 60 * 60 * 24)) % 365;
