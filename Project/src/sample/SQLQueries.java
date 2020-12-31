@@ -45,7 +45,26 @@ public class SQLQueries {
     public static String getCount(String columnCount, String table, String where , String cond){
         String value = "";
 
-        String sql = "Select count(" + columnCount + ") from " + table + " where " + where + " = " + cond;
+        String sql = "Select count(" + columnCount + ") from " + table + " where " + where + " = \"" + cond + "\"";
+        ConnectionUser connectionUser = new ConnectionUser();
+        Connection conn = connectionUser.getConnection();
+
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.execute(sql);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            value += rs.getInt(1);
+            stmt.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return value;
+    }
+    public static String getCount(String columnCount, String table, String where1 , String cond1, String where2, String cond2){
+        String value = "";
+
+        String sql = "Select count(" + columnCount + ") from " + table + " where " + where1 + " = " + cond1 + " and " + where2 + " = " + cond2;
         ConnectionUser connectionUser = new ConnectionUser();
         Connection conn = connectionUser.getConnection();
 
@@ -102,13 +121,28 @@ public class SQLQueries {
             throwables.printStackTrace();
         }
     }
+    public static void updateSql(String table, String column, String value, String where1, String cond1, String where2, String cond2) {
+        try {
+            ConnectionUser connectionUser = new ConnectionUser();
+            Connection conn = connectionUser.getConnection();
+
+            String sql = "update " + table + " set " + column + " = ? where " + where1 + " = ? and " + where2 + " = " + cond2;
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, value);
+            preparedStatement.setInt(2, Integer.parseInt(cond1));
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
     public static String getString(String columnName, String table, int id) {
         String value = "";
 
         String sql = "Select " + columnName + " from " + table + " where Id = "+ id;
         ConnectionUser connectionUser = new ConnectionUser();
         Connection conn = connectionUser.getConnection();
-
+        System.out.println(sql);
         try {
             Statement stmt = conn.createStatement();
             stmt.execute(sql);

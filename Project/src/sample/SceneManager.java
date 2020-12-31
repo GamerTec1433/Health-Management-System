@@ -22,6 +22,7 @@ public class SceneManager {
             Main.window.setScene(new Scene(root));
             Main.window.show();
         } catch (IOException e) {
+            openAlertBox("Extra/AlertBox.fxml", "Error", "Error happened, Please Try again");
             e.printStackTrace();
         }
     }

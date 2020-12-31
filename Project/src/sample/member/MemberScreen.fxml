@@ -142,7 +142,7 @@
             <DropShadow height="41.64" radius="18.865000000000002" width="35.82" />
          </effect>
       </AnchorPane>
-      <AnchorPane fx:id="homePage" layoutX="266.0" prefHeight="771.0" prefWidth="935.0">
+      <AnchorPane fx:id="homePage" layoutX="266.0" prefHeight="771.0" prefWidth="935.0" visible="false">
          <children>
             <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="404.0" prefWidth="907.0">
                <children>
@@ -339,6 +339,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <Label prefHeight="76.0" prefWidth="198.0" text="Username :" textFill="WHITE">
@@ -377,6 +378,16 @@
                                  </font>
                               </Label>
                               <Label fx:id="eDateProfileText" alignment="CENTER" contentDisplay="TOP" layoutX="429.0" layoutY="104.0" text="2077/01/01" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="34.0" prefWidth="277.0" text="Your Coach ID/Name :" textFill="WHITE" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="coachIdNameProfileText" alignment="CENTER" contentDisplay="TOP" text="999 / CCCCC" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="21.0" />
                                  </font>
@@ -457,7 +468,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="messagesPage" layoutX="274.0" layoutY="8.0" prefHeight="771.0" prefWidth="920.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="messagesPage" layoutX="274.0" layoutY="8.0" prefHeight="771.0" prefWidth="920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane layoutX="43.0" layoutY="27.0" prefHeight="707.0" prefWidth="835.0" style="-fx-background-color: #0b090a; -fx-background-radius: 1em;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                <effect>

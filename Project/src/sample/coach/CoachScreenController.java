@@ -167,6 +167,7 @@ public class CoachScreenController implements Initializable {
 
         homeExerText.setText(SQLQueries.getCount("Id", ConnectionUser.EXERCISE));
 
+        System.out.println(Date.valueOf(LocalDate.now()).toString());
         homePlusText.setText(SQLQueries.getCount("Sdate", ConnectionUser.BILLING, "Sdate", Date.valueOf(LocalDate.now()).toString()));
     }
 
@@ -208,7 +209,6 @@ public class CoachScreenController implements Initializable {
             });
             b.setOnMouseEntered(e->{
                 if (buttonsCoachActive == UIControllers.ButtonsCoachActive.values()[finalI]) return;
-                System.out.println(UIControllers.ButtonsCoachActive.values()[finalI] + " " + buttonsCoachActive);
                 UIControllers.changeStyleBackground(b, ProjectColors.SECONDARY_COLOR, ProjectColors.WHITE_COLOR, 0);
             });
             b.setOnMouseExited(e->{
@@ -268,13 +268,11 @@ public class CoachScreenController implements Initializable {
         {
             SceneManager sceneManager = new SceneManager();
             sceneManager.openAlertBox("Extra/AlertBox.fxml", "Sending Message", "Message Successfully Sent!");
-            System.out.println("Message Sent!");
         }
         else
         {
             SceneManager sceneManager = new SceneManager();
             sceneManager.openAlertBox("Extra/AlertBox.fxml", "Sending Message", "Error in sending message, please try again!");
-            System.out.println("Message Not Sent!");
         }
     }
 
@@ -310,13 +308,11 @@ public class CoachScreenController implements Initializable {
         {
             SceneManager sceneManager = new SceneManager();
             sceneManager.openAlertBox("Extra/AlertBox.fxml", "Sending Message", "Message Successfully Sent!");
-            System.out.println("Message Sent!");
         }
         else
         {
             SceneManager sceneManager = new SceneManager();
             sceneManager.openAlertBox("Extra/AlertBox.fxml", "Sending Message", "Error in sending message, please try again!");
-            System.out.println("Message Not Sent!");
         }
     }
 
@@ -414,8 +410,6 @@ public class CoachScreenController implements Initializable {
             {
                 int id = resultSet.getInt("Id");
                 String exercise = resultSet.getString("exercise");
-                System.out.println(id);
-                System.out.println(exercise);
                 data.add(new TimelineItems(id, exercise));
             }
 
@@ -447,10 +441,6 @@ public class CoachScreenController implements Initializable {
                 String exercise = resultSet.getString("Name");
                 String exerciseId = resultSet.getString("Report");
 
-                System.out.println(id);
-                System.out.println(exercise);
-                System.out.println(exerciseId);
-
                 data.add(new MemberItems(id, exercise, exerciseId));
             }
 
@@ -473,17 +463,17 @@ public class CoachScreenController implements Initializable {
 
         String age = ageTextfield.getText();
 
-        if (!name.isEmpty() && !name.isBlank())
+        if (!name.isEmpty())
         {
             SQLQueries.updateSql(ConnectionUser.COACHES, "Name", name, User.id);
             isNameEdited = true;
         }
-        if (!password.isEmpty() && !password.isBlank())
+        if (!password.isEmpty())
         {
             SQLQueries.updateSql(ConnectionUser.COACHES, "Password", password, User.id);
             isPassEdited = true;
         }
-        if (!age.isEmpty() && !age.isBlank())
+        if (!age.isEmpty())
         {
             SQLQueries.updateSql(ConnectionUser.COACHES, "Age", age, User.id);
             isAgeEdited = true;

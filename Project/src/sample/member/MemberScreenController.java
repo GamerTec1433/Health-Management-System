@@ -79,6 +79,9 @@ public class MemberScreenController implements Initializable {
     @FXML
     private Label eDateProfileText;
 
+    @FXML
+    private Label coachIdNameProfileText;
+
 
     // Anchors
 
@@ -151,6 +154,11 @@ public class MemberScreenController implements Initializable {
             b.setOnAction(e->{
                 UIControllers.activePage(b, jfxButtons, anchors.get(finalI), anchors, ProjectColors.WHITE_COLOR, ProjectColors.WHITE_COLOR, 0, 0);
                 buttonsActive = UIControllers.ButtonsMemberActive.values()[finalI];
+
+                if (b == messageBtn)
+                {
+                    checkReadedMessages();
+                }
             });
             b.setOnMouseEntered(e->{
                 if (buttonsActive == UIControllers.ButtonsMemberActive.values()[finalI]) return;
@@ -165,6 +173,7 @@ public class MemberScreenController implements Initializable {
 
         //Show Home Page
         homeBtn.fire();
+        checkNewMessages();
     }
 
     private void initializeTables()
@@ -186,8 +195,32 @@ public class MemberScreenController implements Initializable {
         homeExerText.setText(SQLQueries.getCount("exercise", ConnectionUser.EXERCISE));
 
         homeDaysText.setText(SQLQueries.getDateDiff("SubDate", ConnectionUser.MEMBERS, User.id));
+
+        int coachId = SQLQueries.getInt("CoachId", ConnectionUser.MEMBERS, User.id);
+        String coachName = SQLQueries.getString("Name", ConnectionUser.COACHES, coachId);
+        coachIdNameProfileText.setText(coachId + " / " + coachName);
     }
 
+    private void checkReadedMessages()
+    {
+        SQLQueries.updateSql(ConnectionUser.MESSAGES, "IsReaded", "1", "UserId", Integer.toString(User.id), "IsReaded", "0");
+        checkNewMessages();
+    }
+
+    private void checkNewMessages()
+    {
+        String countNewMessages = SQLQueries.getCount("IsReaded", ConnectionUser.MESSAGES,
+                "UserId", Integer.toString(User.id), "IsReaded", "0");
+        if (countNewMessages.compareTo("0") == 0)
+        {
+            notificationMess.setVisible(false);
+        }
+        else
+        {
+            notificationMess.setVisible(true);
+        }
+        notificationMess.setText(countNewMessages);
+    }
 
     @FXML
     public void refreshTimelineTable(Event event)
@@ -262,17 +295,17 @@ public class MemberScreenController implements Initializable {
 
         String age = ageTextfield.getText();
 
-        if (!name.isEmpty() && !name.isBlank())
+        if (!name.isEmpty())
         {
             SQLQueries.updateSql(ConnectionUser.MEMBERS, "Name", name, User.id);
             isNameEdited = true;
         }
-        if (!password.isEmpty() && !password.isBlank())
+        if (!password.isEmpty())
         {
             SQLQueries.updateSql(ConnectionUser.MEMBERS, "Password", password, User.id);
             isPassEdited = true;
         }
-        if (!age.isEmpty() && !age.isBlank())
+        if (!age.isEmpty())
         {
             SQLQueries.updateSql(ConnectionUser.MEMBERS, "Age", age, User.id);
             isAgeEdited = true;
