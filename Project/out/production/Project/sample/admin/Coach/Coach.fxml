@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="741.0" prefWidth="951.0" style="-fx-background-color: linear-gradient(to left, #2b2629, #282426, #252224, #232021, #201e1f, #1f1d1e, #1e1d1e, #1d1c1d, #1e1d1e, #1e1e1f, #1f1f1f, #202020);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Coach.Coach">
+    <children>
+        <VBox layoutX="-9.0" prefHeight="774.0" prefWidth="287.0" style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="684.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label alignment="CENTER" prefHeight="80.0" prefWidth="288.0" text="Admin" textFill="#eedede">
+                    <VBox.margin>
+                        <Insets left="15.0" right="15.0" top="15.0" />
+                    </VBox.margin>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <font>
+                        <Font name="System Bold Italic" size="48.0" />
+                    </font>
+                </Label>
+                <JFXButton fx:id="addButtonCoach" prefHeight="50.0" prefWidth="292.0" style="-fx-background-color: E5383A;" text="Add" textFill="WHITE" translateY="20.0">
+                    <VBox.margin>
+                        <Insets left="15.0" right="15.0" top="25.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Arial Bold" size="18.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton fx:id="searchButtonCoach" prefHeight="50.0" prefWidth="292.0" style="-fx-background-color: E5383A;" text="Search" textFill="WHITE" translateY="20.0">
+                    <VBox.margin>
+                        <Insets left="15.0" right="15.0" top="25.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Arial Bold" size="18.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton fx:id="listButtonCoach" prefHeight="50.0" prefWidth="292.0" style="-fx-background-color: E5383A;" text="List" textFill="WHITE" translateY="20.0">
+                    <VBox.margin>
+                        <Insets left="15.0" right="15.0" top="25.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Arial Bold" size="18.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton fx:id="updateButtonCoach" prefHeight="50.0" prefWidth="292.0" style="-fx-background-color: E5383A;" text="Update" textFill="WHITE" translateY="20.0">
+                    <VBox.margin>
+                        <Insets left="15.0" right="15.0" top="25.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Arial Bold" size="18.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton fx:id="deleteButtonCoach" prefHeight="50.0" prefWidth="292.0" style="-fx-background-color: E5383A;" text="Delete" textFill="WHITE" translateY="20.0">
+                    <font>
+                        <Font name="Arial Bold" size="18.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets left="15.0" right="15.0" top="25.0" />
+                    </VBox.margin>
+                </JFXButton>
+            <JFXButton fx:id="coachBack" onAction="#backPages" prefHeight="50.0" prefWidth="177.0" style="-fx-background-color: A5161A;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="50.0" top="150.0" />
+               </VBox.margin>
+            </JFXButton>
+            </children>
+        </VBox>
+        <AnchorPane fx:id="coachAdd" layoutX="281.0" layoutY="190.0" prefHeight="326.0" prefWidth="568.0" style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="144.0" AnchorPane.rightAnchor="86.20000000000005" AnchorPane.topAnchor="190.0">
+            <children>
+                <Label alignment="CENTER" layoutX="46.0" layoutY="77.0" lineSpacing="1.0" prefHeight="35.0" prefWidth="139.0" style="-fx-background-color: #202020;" text="Name:" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="ageField" alignment="CENTER" focusColor="#e5383b" layoutX="201.0" layoutY="149.0" prefHeight="50.0" prefWidth="287.0" style="-fx-background-color: #B1A7A6;" AnchorPane.leftAnchor="201.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="149.0">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </JFXTextField>
+                <JFXTextField fx:id="nameField" alignment="CENTER" focusColor="#e5383b" layoutX="201.0" layoutY="69.0" prefHeight="50.0" prefWidth="287.0" style="-fx-background-color: #B1A7A6;">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+                <Label alignment="CENTER" layoutX="46.0" layoutY="244.0" lineSpacing="1.0" prefHeight="35.0" prefWidth="139.0" style="-fx-background-color: #202020;" text="Password:" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <JFXButton layoutX="354.0" layoutY="250.0" onAction="#OnClickSubmit1" prefHeight="50.0" prefWidth="158.0" style="-fx-background-color: #e5383b;" text="submit" textFill="WHITE" AnchorPane.bottomAnchor="25.800000000000068" AnchorPane.rightAnchor="55.60000000000002">
+                    <font>
+                        <Font name="Arial Bold Italic" size="24.0" />
+                    </font>
+                </JFXButton>
+            <JFXTextField fx:id="passwordField" alignment="CENTER" focusColor="#e5383b" layoutX="201.0" layoutY="237.0" prefHeight="50.0" prefWidth="287.0" style="-fx-background-color: #B1A7A6;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label alignment="CENTER" layoutX="46.0" layoutY="164.0" lineSpacing="1.0" prefHeight="35.0" prefWidth="139.0" style="-fx-background-color: #202020;" text="Age:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            </children>
+            <effect>
+                <Lighting>
+                    <bumpInput>
+                        <Reflection />
+                    </bumpInput>
+                </Lighting>
+            </effect>
+        </AnchorPane>
+        <AnchorPane fx:id="coachSearch" layoutX="290.0" layoutY="136.0" prefHeight="550.0" prefWidth="631.0" style="-fx-background-color: #202020;" visible="false">
+            <children>
+                <Label alignment="CENTER" layoutX="23.0" layoutY="34.0" lineSpacing="1.0" prefHeight="35.0" prefWidth="122.0" style="-fx-background-color: #202020;" text="ID:" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="searchById" alignment="CENTER" focusColor="#e5383b" layoutX="159.0" layoutY="27.0" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: B1A7A6;">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+                <JFXButton layoutX="437.0" layoutY="27.0" onAction="#OnClickSearch" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: E5383A;" text="Search" textFill="WHITE">
+                    <font>
+                        <Font name="Arial Bold Italic" size="24.0" />
+                    </font>
+                </JFXButton>
+                <TableView fx:id="tableView" layoutY="97.0" prefHeight="386.0" prefWidth="631.0" style="-fx-background-color: #D3D3D3;" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="78.0" text="ID" />
+                        <TableColumn fx:id="nameColumn" prefWidth="161.0" text="Name" />
+                        <TableColumn fx:id="passwordColumn" prefWidth="178.0" text="Password" />
+                        <TableColumn fx:id="ageColumn" prefWidth="118.0" text="Age" />
+                    </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+                </TableView>
+            <JFXButton layoutX="478.0" layoutY="492.0" onAction="#OnClickRefresh" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: E5383A;" text="Refresh" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="24.0" />
+               </font>
+            </JFXButton>
+            </children>
+            <effect>
+                <Lighting>
+                    <bumpInput>
+                        <Reflection />
+                    </bumpInput>
+                </Lighting>
+            </effect>
+        </AnchorPane>
+      <AnchorPane fx:id="coachList" layoutX="290.0" layoutY="146.0" prefHeight="515.0" prefWidth="631.0" style="-fx-background-color: #202020;" visible="false">
+         <children>
+            <TableView fx:id="tableView1" layoutY="7.0" prefHeight="439.0" prefWidth="631.0" style="-fx-background-color: #D3D3D3;" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <columns>
+                  <TableColumn fx:id="idColumn1" prefWidth="78.0" text="ID" />
+                  <TableColumn fx:id="nameColumn1" prefWidth="161.0" text="Name" />
+                  <TableColumn fx:id="passwordColumn1" prefWidth="178.0" text="Password" />
+                  <TableColumn fx:id="ageColumn1" prefWidth="118.0" text="Age" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <JFXButton layoutX="258.0" layoutY="450.0" onAction="#OnClickRefresh" prefHeight="50.0" prefWidth="158.0" style="-fx-background-color: E5383A;" text="Refresh" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="24.0" />
+               </font>
+            </JFXButton>
+         </children>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Reflection />
+               </bumpInput>
+            </Lighting>
+         </effect>
+      </AnchorPane>
+        <AnchorPane fx:id="coachUpdate" layoutX="297.0" layoutY="184.0" prefHeight="439.0" prefWidth="568.0" style="-fx-background-color: #202020;" visible="false">
+            <children>
+                <JFXTextField fx:id="newName" alignment="CENTER" focusColor="#e5383b" layoutX="201.0" layoutY="116.0" prefHeight="50.0" prefWidth="287.0" style="-fx-background-color: #B1A7A6;">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+                <Label alignment="CENTER" layoutX="46.0" layoutY="44.0" lineSpacing="1.0" prefHeight="35.0" prefWidth="139.0" style="-fx-background-color: #202020;" text="New_ID:" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="idWillUpdate" alignment="CENTER" focusColor="#e5383b" layoutX="201.0" layoutY="37.0" prefHeight="50.0" prefWidth="287.0" style="-fx-background-color: #B1A7A6;">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+                <Label alignment="CENTER" layoutX="46.0" layoutY="124.0" lineSpacing="1.0" prefHeight="35.0" prefWidth="139.0" style="-fx-background-color: #202020;" text="New Name:" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <JFXButton layoutX="396.0" layoutY="375.0" onAction="#OnClickUpdate" prefHeight="50.0" prefWidth="158.0" style="-fx-background-color: E5383A;" text="Update" textFill="WHITE">
+                    <font>
+                        <Font name="Arial Bold Italic" size="24.0" />
+                    </font>
+                </JFXButton>
+                <JFXTextField fx:id="newAgeField" alignment="CENTER" focusColor="#e5383b" layoutX="201.0" layoutY="284.0" prefHeight="50.0" prefWidth="287.0" style="-fx-background-color: #B1A7A6;">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </JFXTextField>
+                <Label alignment="CENTER" layoutX="46.0" layoutY="292.0" lineSpacing="1.0" prefHeight="35.0" prefWidth="139.0" style="-fx-background-color: #202020;" text="Age:" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+            <JFXTextField fx:id="newPassword" alignment="CENTER" focusColor="#e5383b" layoutX="201.0" layoutY="195.0" prefHeight="50.0" prefWidth="287.0" style="-fx-background-color: #B1A7A6;">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+            <Label alignment="CENTER" layoutX="46.0" layoutY="202.0" lineSpacing="1.0" prefHeight="35.0" prefWidth="139.0" style="-fx-background-color: #202020;" text="New Password:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            </children>
+            <effect>
+                <Lighting>
+                    <bumpInput>
+                        <Reflection />
+                    </bumpInput>
+                </Lighting>
+            </effect>
+        </AnchorPane>
+        <AnchorPane fx:id="coachDelete" layoutX="290.0" layoutY="170.0" prefHeight="532.0" prefWidth="602.0" style="-fx-background-color: #202020;" visible="false">
+            <children>
+                <Label alignment="CENTER" layoutX="20.0" layoutY="34.0" lineSpacing="1.0" prefHeight="35.0" prefWidth="96.0" style="-fx-background-color: #202020;" text="ID:" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="idField2" alignment="CENTER" focusColor="#e5383b" layoutX="141.0" layoutY="27.0" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: #B1A7A6;">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+                <JFXButton layoutX="425.0" layoutY="27.0" onAction="#OnClickDelete" prefHeight="50.0" prefWidth="148.0" style="-fx-background-color: E5383A;" text="Delete" textFill="WHITE" AnchorPane.bottomAnchor="455.0" AnchorPane.rightAnchor="29.0">
+                    <font>
+                        <Font name="Arial Bold Italic" size="24.0" />
+                    </font>
+                </JFXButton>
+            <TableView fx:id="tableview2" layoutY="87.0" prefHeight="367.0" prefWidth="602.0" style="-fx-background-color: #D3D3D3;" AnchorPane.bottomAnchor="78.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <columns>
+                  <TableColumn fx:id="idColumn2" prefWidth="78.0" text="ID" />
+                  <TableColumn fx:id="nameColumn2" prefWidth="140.0" text="Name" />
+                  <TableColumn fx:id="passwordColumn2" prefWidth="92.0" text="Password" />
+                  <TableColumn fx:id="ageColumn2" prefWidth="203.0" text="Age" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <JFXButton layoutX="236.0" layoutY="468.0" onAction="#OnClickRefresh" prefHeight="50.0" prefWidth="148.0" style="-fx-background-color: E5383A;" text="Refresh" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold Italic" size="24.0" />
+               </font>
+            </JFXButton>
+            </children>
+            <effect>
+                <Lighting>
+                    <bumpInput>
+                        <Reflection />
+                    </bumpInput>
+                </Lighting>
+            </effect>
+        </AnchorPane>
+      <Label alignment="CENTER" layoutX="421.0" layoutY="21.0" prefHeight="80.0" prefWidth="288.0" text="Coach" textFill="#fff0f0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font name="Malgun Gothic" size="64.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

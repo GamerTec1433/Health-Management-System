@@ -66,9 +66,16 @@ public class LoginController implements Initializable {
         }
         else
         {
-            System.out.println("Iam An Admin");
-            SceneManager sceneManager = new SceneManager();
-            sceneManager.changeScene("admin/AdminScreen.fxml", "Health Club Management System");
+            if (checkUser(ConnectionUser.ADMIN, usernameTextField.getText(), passwordTextField.getText()))
+            {
+                System.out.println("Iam An Admin");
+                SceneManager sceneManager = new SceneManager();
+                sceneManager.changeScene("admin/Admin/Admin.fxml", "Health Club Management System");
+            }
+            else
+            {
+                System.out.println("Wrong User");
+            }
         }
 
     }

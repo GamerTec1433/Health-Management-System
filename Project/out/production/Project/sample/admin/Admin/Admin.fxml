@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="477.0" prefWidth="716.0" style="-fx-background-color: #202020;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.admin.Admin.Admin">
+   <children>
+      <JFXRadioButton fx:id="radioMem" layoutX="480.0" layoutY="257.0" prefHeight="78.0" prefWidth="218.0" style="-fx-background-color: E5383A;" text="Member" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold Italic" size="36.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="toggMem" />
+         </toggleGroup>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </JFXRadioButton>
+      <JFXRadioButton fx:id="radioCoach" layoutX="262.0" layoutY="169.0" prefHeight="78.0" prefWidth="218.0" style="-fx-background-color: E5383A;" text="Coach" textFill="WHITE" toggleGroup="$toggMem">
+         <font>
+            <Font name="Arial Bold Italic" size="36.0" />
+         </font>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </JFXRadioButton>
+      <JFXButton layoutX="44.0" layoutY="389.0" onAction="#changing" prefHeight="57.0" prefWidth="167.0" style="-fx-background-color: #e5383b;" text="Enter" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </JFXButton>
+      <JFXRadioButton fx:id="radioAdmin" layoutX="44.0" layoutY="81.0" prefHeight="78.0" prefWidth="218.0" selected="true" style="-fx-background-color: E5383A;" text="Admin" textFill="WHITE" toggleGroup="$toggMem">
+         <font>
+            <Font name="Arial Bold Italic" size="36.0" />
+         </font>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </JFXRadioButton>
+   </children>
+</AnchorPane>
