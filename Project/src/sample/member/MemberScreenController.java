@@ -127,11 +127,7 @@ public class MemberScreenController implements Initializable {
         UIControllers.setTextFieldNumbers(ageTextfield);
 
         refreshHomeTexts();
-
-        nameProfileText.setText(SQLQueries.getString("Name", ConnectionUser.MEMBERS, User.id));
-        ageProfileText.setText(Integer.toString(SQLQueries.getInt("Age", ConnectionUser.MEMBERS, User.id)));
-        sDateProfileText.setText(SQLQueries.getDate("Sdate", ConnectionUser.BILLING, User.id, false).toString());
-        eDateProfileText.setText(SQLQueries.getDate("SubDate", ConnectionUser.MEMBERS, User.id, true).toString());
+        showProfile();
     }
 
     private void intializeButtons() {
@@ -176,8 +172,7 @@ public class MemberScreenController implements Initializable {
         checkNewMessages();
     }
 
-    private void initializeTables()
-    {
+    private void initializeTables() {
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         exerciseCol.setCellValueFactory(new PropertyValueFactory<>("exercise"));
 
@@ -188,8 +183,7 @@ public class MemberScreenController implements Initializable {
     }
 
 
-    private void refreshHomeTexts()
-    {
+    private void refreshHomeTexts() {
         homeMessText.setText(SQLQueries.getCount("Message", ConnectionUser.MESSAGES, User.id));
 
         homeExerText.setText(SQLQueries.getCount("exercise", ConnectionUser.EXERCISE));
@@ -201,14 +195,12 @@ public class MemberScreenController implements Initializable {
         coachIdNameProfileText.setText(coachId + " / " + coachName);
     }
 
-    private void checkReadedMessages()
-    {
+    private void checkReadedMessages() {
         SQLQueries.updateSql(ConnectionUser.MESSAGES, "IsReaded", "1", "UserId", Integer.toString(User.id), "IsReaded", "0");
         checkNewMessages();
     }
 
-    private void checkNewMessages()
-    {
+    private void checkNewMessages() {
         String countNewMessages = SQLQueries.getCount("IsReaded", ConnectionUser.MESSAGES,
                 "UserId", Integer.toString(User.id), "IsReaded", "0");
         if (countNewMessages.compareTo("0") == 0)
@@ -223,8 +215,7 @@ public class MemberScreenController implements Initializable {
     }
 
     @FXML
-    public void refreshTimelineTable(Event event)
-    {
+    public void refreshTimelineTable(Event event) {
         ConnectionUser connectionUser = new ConnectionUser();
         Connection con = connectionUser.getConnection();
         try {
@@ -254,8 +245,7 @@ public class MemberScreenController implements Initializable {
     }
 
     @FXML
-    public void refreshMessagesTable(Event event)
-    {
+    public void refreshMessagesTable(Event event) {
         ConnectionUser connectionUser = new ConnectionUser();
         Connection con = connectionUser.getConnection();
         try {
@@ -285,8 +275,7 @@ public class MemberScreenController implements Initializable {
     }
 
     @FXML
-    private void applyEditProfile(Event event)
-    {
+    private void applyEditProfile(Event event) {
         boolean isNameEdited, isPassEdited, isAgeEdited;
         isNameEdited = isPassEdited = isAgeEdited = false;
         String name = nameTextfield.getText();
@@ -322,15 +311,21 @@ public class MemberScreenController implements Initializable {
                 edit += "Age Has Been Updated!\n";
             SceneManager sceneManager = new SceneManager();
             sceneManager.openAlertBox("Extra/AlertBox.fxml", "Edit Confirmed", edit);
+            showProfile();
         }
 
+    }
+    public void showProfile() {
+        nameProfileText.setText(SQLQueries.getString("Name", ConnectionUser.MEMBERS, User.id));
+        ageProfileText.setText(Integer.toString(SQLQueries.getInt("Age", ConnectionUser.MEMBERS, User.id)));
+        sDateProfileText.setText(SQLQueries.getDate("Sdate", ConnectionUser.BILLING, User.id, false).toString());
+        eDateProfileText.setText(SQLQueries.getDate("SubDate", ConnectionUser.MEMBERS, User.id, true).toString());
     }
 
 
 
     @FXML
-    public void logout(Event event)
-    {
+    public void logout(Event event) {
         SceneManager sceneManager = new SceneManager();
         sceneManager.changeScene("Login.fxml", "Health Club Management System");
         User.id = 0;
