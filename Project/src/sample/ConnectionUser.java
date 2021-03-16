@@ -12,7 +12,7 @@ public class ConnectionUser {
     public final static String BILLING = "billingdata";
     public final static String MESSAGES = "messagedata";
 
-    public static Connection connection;
+    private Connection connection;
 
     public ConnectionUser()
     {

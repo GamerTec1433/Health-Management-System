@@ -1,9 +1,63 @@
 package sample;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 public class SQLQueries {
+    public static boolean checkUser(String table, String username, String password) {
+        ConnectionUser connectionUser = new ConnectionUser();
+        Connection con = connectionUser.getConnection();
+        try {
+            String sql = "SELECT * FROM " + table + " WHERE Name = ? AND Password = ?;";
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, username);
+            statement.setString(2, password);
+            statement.execute();
+            ResultSet resultSet = statement.getResultSet();
+            resultSet.next();
+            String usernameTemp = resultSet.getString("Name");
+            String passwordTemp = resultSet.getString("Password");
+            if (usernameTemp.equals(username) &&
+                    passwordTemp.equals(password))
+            {
+                User.id = resultSet.getInt("id");
+                User.username = usernameTemp;;
+                User.password = passwordTemp;
+
+                return true;
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+        return false;
+    }
+    public static boolean checkUserSubs(int id) {
+        Date date = Date.valueOf(LocalDate.now());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        ConnectionUser conu = new ConnectionUser();
+        Connection con = conu.getConnection();
+        String sql  = "select SubDate from usersdata where Id = " + id;
+        Statement stmt = null;
+        try {
+            stmt = con.createStatement();
+            stmt.execute(sql);
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+
+            Date date2 = rs.getDate("SubDate");
+
+            if (date.compareTo(date2) > 0) {
+                return false;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return true;
+    }
     public static String getCount(String columnCount, String table) {
         String value = "";
 

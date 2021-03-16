@@ -1,11 +1,5 @@
 package sample.coach;
 
-import javafx.beans.property.SimpleStringProperty;
-
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-
 public class TimelineItems {
     private int id;
     private String exercise;

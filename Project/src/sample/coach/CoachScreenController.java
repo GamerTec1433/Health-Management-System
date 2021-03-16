@@ -161,8 +161,7 @@ public class CoachScreenController implements Initializable {
         showHomeAnalysis();
     }
 
-    public void showHomeAnalysis()
-    {
+    public void showHomeAnalysis() {
         homeMemText.setText(SQLQueries.getCount("Id", ConnectionUser.MEMBERS, "CoachId", Integer.toString(User.id)));
 
         homeExerText.setText(SQLQueries.getCount("Id", ConnectionUser.EXERCISE));
@@ -171,17 +170,9 @@ public class CoachScreenController implements Initializable {
         homePlusText.setText(SQLQueries.getCount("Sdate", ConnectionUser.BILLING, "Sdate", Date.valueOf(LocalDate.now()).toString()));
     }
 
-    public void showProfile()
-    {
-        nameProfileText.setText(SQLQueries.getString("Name", ConnectionUser.COACHES, User.id));
-        ageProfileText.setText(Integer.toString(SQLQueries.getInt("Age", ConnectionUser.COACHES, User.id)));
-        idProfileText.setText(Integer.toString(SQLQueries.getInt("Id", ConnectionUser.COACHES, User.id)));
-    }
-
     ArrayList<AnchorPane> anchors;
     ArrayList<JFXButton> jfxButtons;
-    private void initializeButtons()
-    {
+    private void initializeButtons() {
         anchors = new ArrayList<>();
             anchors.add(homePage);
             anchors.add(timelinePage);
@@ -242,8 +233,7 @@ public class CoachScreenController implements Initializable {
     }
 
     @FXML
-    public void sendMessage(JFXTextArea textArea)
-    {
+    public void sendMessage(JFXTextArea textArea) {
         String str = textArea.getText();
 
         ConnectionUser connectionUser = new ConnectionUser();
@@ -277,8 +267,7 @@ public class CoachScreenController implements Initializable {
     }
 
     @FXML
-    public void sendMessage(JFXTextArea textArea, JFXTextField idMemberTextField)
-    {
+    public void sendMessage(JFXTextArea textArea, JFXTextField idMemberTextField) {
         String str = textArea.getText();
         int id = Integer.parseInt(idMemberTextField.getText());
 
@@ -316,8 +305,7 @@ public class CoachScreenController implements Initializable {
         }
     }
 
-    public void addNewTimeline(Event event)
-    {
+    public void addNewTimeline(Event event) {
         boolean isAdded = false;
         String exerciseName = exerciseNameText.getText();
 
@@ -348,8 +336,7 @@ public class CoachScreenController implements Initializable {
 
         refreshTimelineTable(null);
     }
-    public void deleteNewTimeline(Event event)
-    {
+    public void deleteNewTimeline(Event event) {
         boolean isAdded = false;
         String exerciseId = exerciseIDText.getText();
 
@@ -382,8 +369,7 @@ public class CoachScreenController implements Initializable {
         refreshTimelineTable(null);
     }
 
-    private void initializeTables()
-    {
+    private void initializeTables() {
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         exerciseCol.setCellValueFactory(new PropertyValueFactory<>("exercise"));
 
@@ -392,11 +378,11 @@ public class CoachScreenController implements Initializable {
         exerciseIdColMem.setCellValueFactory(new PropertyValueFactory<>("report"));
 
         refreshTimelineTable(null);
+        refreshMembersTable(null);
     }
 
     @FXML
-    public void refreshTimelineTable(Event event)
-    {
+    public void refreshTimelineTable(Event event) {
         ConnectionUser connectionUser = new ConnectionUser();
         Connection con = connectionUser.getConnection();
         try {
@@ -418,13 +404,10 @@ public class CoachScreenController implements Initializable {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-        refreshMembersTable(null);
     }
 
     @FXML
-    public void refreshMembersTable(Event event)
-    {
+    public void refreshMembersTable(Event event) {
         ConnectionUser connectionUser = new ConnectionUser();
         Connection con = connectionUser.getConnection();
         try {
@@ -453,8 +436,7 @@ public class CoachScreenController implements Initializable {
 
 
     @FXML
-    private void applyEditProfile(Event event)
-    {
+    private void applyEditProfile(Event event) {
         boolean isNameEdited, isPassEdited, isAgeEdited;
         isNameEdited = isPassEdited = isAgeEdited = false;
         String name = nameTextfield.getText();
@@ -493,13 +475,16 @@ public class CoachScreenController implements Initializable {
         }
         showProfile();
     }
-
+    public void showProfile() {
+        nameProfileText.setText(SQLQueries.getString("Name", ConnectionUser.COACHES, User.id));
+        ageProfileText.setText(Integer.toString(SQLQueries.getInt("Age", ConnectionUser.COACHES, User.id)));
+        idProfileText.setText(Integer.toString(SQLQueries.getInt("Id", ConnectionUser.COACHES, User.id)));
+    }
 
 
 
     @FXML
-    public void logout(Event event)
-    {
+    public void logout(Event event) {
         SceneManager sceneManager = new SceneManager();
         sceneManager.changeScene("Login.fxml", "Health Club Management System");
         User.id = 0;

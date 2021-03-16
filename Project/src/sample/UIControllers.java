@@ -12,14 +12,14 @@ import java.util.ArrayList;
 
 public class UIControllers {
 
-    public static enum ButtonsMemberActive {
+    public enum ButtonsMemberActive {
         home,
         timeline,
         profile,
         message
     }
 
-    public static enum ButtonsCoachActive {
+    public enum ButtonsCoachActive {
         home,
         timeline,
         members,

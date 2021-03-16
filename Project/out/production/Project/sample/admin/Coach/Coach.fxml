@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="741.0" prefWidth="951.0" style="-fx-background-color: linear-gradient(to left, #2b2629, #282426, #252224, #232021, #201e1f, #1f1d1e, #1e1d1e, #1d1c1d, #1e1d1e, #1e1e1f, #1f1f1f, #202020);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Coach.Coach">
+<AnchorPane prefHeight="741.0" prefWidth="951.0" style="-fx-background-color: linear-gradient(to left, #2b2629, #282426, #252224, #232021, #201e1f, #1f1d1e, #1e1d1e, #1d1c1d, #1e1d1e, #1e1e1f, #1f1f1f, #202020);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.admin.Coach.Coach">
     <children>
         <VBox layoutX="-9.0" prefHeight="774.0" prefWidth="287.0" style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="684.0" AnchorPane.topAnchor="0.0">
             <children>
