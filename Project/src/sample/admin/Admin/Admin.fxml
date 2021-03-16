@@ -28,7 +28,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </JFXRadioButton>
-      <JFXButton layoutX="44.0" layoutY="389.0" onAction="#changing" prefHeight="57.0" prefWidth="167.0" style="-fx-background-color: #e5383b;" text="Enter" textFill="WHITE">
+      <JFXButton layoutX="535.0" layoutY="397.0" onAction="#changing" prefHeight="57.0" prefWidth="167.0" style="-fx-background-color: #e5383b;" text="Enter" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -41,5 +41,10 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </JFXRadioButton>
+      <JFXButton layoutX="14.0" layoutY="410.0" onAction="#logout" prefHeight="31.0" prefWidth="99.0" style="-fx-background-color: #e5383b;" text="Logout" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
